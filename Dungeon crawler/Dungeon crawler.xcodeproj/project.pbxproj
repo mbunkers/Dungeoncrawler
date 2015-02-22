@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0CE03EEB1A9A1F15007BBAD5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0CE03EEA1A9A1F15007BBAD5 /* main.cpp */; };
+		0CE03EF21A9A1FC9007BBAD5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE03EF11A9A1FC9007BBAD5 /* CoreFoundation.framework */; };
+		0CE03EF51A9A2481007BBAD5 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0CE03EF31A9A2481007BBAD5 /* Game.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,9 @@
 /* Begin PBXFileReference section */
 		0CE03EE71A9A1F15007BBAD5 /* Dungeon crawler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Dungeon crawler"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CE03EEA1A9A1F15007BBAD5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		0CE03EF11A9A1FC9007BBAD5 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		0CE03EF31A9A2481007BBAD5 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		0CE03EF41A9A2481007BBAD5 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CE03EF21A9A1FC9007BBAD5 /* CoreFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +47,7 @@
 		0CE03EDE1A9A1F15007BBAD5 = {
 			isa = PBXGroup;
 			children = (
+				0CE03EF11A9A1FC9007BBAD5 /* CoreFoundation.framework */,
 				0CE03EE91A9A1F15007BBAD5 /* Dungeon crawler */,
 				0CE03EE81A9A1F15007BBAD5 /* Products */,
 			);
@@ -58,6 +65,8 @@
 			isa = PBXGroup;
 			children = (
 				0CE03EEA1A9A1F15007BBAD5 /* main.cpp */,
+				0CE03EF31A9A2481007BBAD5 /* Game.cpp */,
+				0CE03EF41A9A2481007BBAD5 /* Game.h */,
 			);
 			path = "Dungeon crawler";
 			sourceTree = "<group>";
@@ -119,6 +128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CE03EEB1A9A1F15007BBAD5 /* main.cpp in Sources */,
+				0CE03EF51A9A2481007BBAD5 /* Game.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
