@@ -13,6 +13,10 @@
 #include <CoreFoundation/CoreFoundation.h>
 #endif
 
+namespace UserActions {
+    const std::string prompt {"> "};
+}
+
 int main(int argc, const char * argv[]) {
 
 #ifdef __APPLE__
@@ -28,13 +32,36 @@ int main(int argc, const char * argv[]) {
     CFRelease(resourcesURL);
 #endif
 
-    Game game = Game();
+    try {
 
-    while (game.isRunning()) {
+        Game game = Game();
+
+        cout << "Kind warrior, what is your name?\n";
+        cout << UserActions::prompt;
+
         // Present options
         string input = "";
+        game.setupHero(input);
         getline(cin, input);
-        // Do action
+
+        cout << "Welcome " << input << "!\nThere is a treasure deep down and you want it!\n";
+        cout << "What size should the dungeons be?\n";
+        cout << UserActions::prompt;
+        getline(cin, input);
+        game.setRoomSize(atoi(input.c_str()));
+
+
+        while (game.isRunning()) {
+            // Present options
+
+            cout << UserActions::prompt;
+            string input = "";
+            getline(cin, input);
+            // Do action
+        }
+
+    } catch (...) {
+        cout << "Something whent wrong...\nThis game ends now.\n";
     }
 
     return 0;

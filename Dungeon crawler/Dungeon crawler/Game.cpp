@@ -7,9 +7,25 @@
 //
 
 #include "Game.h"
+#include "RoomFactory.h"
 
 Game::Game(){
+    mIsRunning = false;
+    setup();
+}
+
+void Game::setup(){
+    RoomFactory factory = RoomFactory();
+}
+
+void Game::setupHero(string name){
+    mHero = make_shared<Hero>(name);
     mIsRunning = true;
+    mGameState = ROOM;
+}
+
+void Game::setRoomSize(int size){
+    mRoomSize = size;
 }
 
 bool Game::isRunning(){

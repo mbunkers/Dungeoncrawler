@@ -10,24 +10,30 @@
 #define __Dungeon_crawler__Game__
 
 #include <stdio.h>
+#include "Hero.h"
 using namespace std;
 
 class Game {
-private:
+public:
     enum GameStates{
         MAIN = 0,
         ROOM = 1,
         ATTACK = 2
     };
 
-    bool mIsRunning;
-    GameStates mGameState = MAIN;
-
-public:
     Game();
+    void setupHero(string name);
+    void setRoomSize(int size);
     bool isRunning();
+    void setup();
     string possibleActions();
     void doAction(string action);
+
+private:
+    int mRoomSize;
+    shared_ptr<Hero> mHero;
+    bool mIsRunning;
+    GameStates mGameState = MAIN;
 };
 
 #endif /* defined(__Dungeon_crawler__Game__) */
