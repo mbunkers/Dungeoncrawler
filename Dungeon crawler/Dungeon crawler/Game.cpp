@@ -15,3 +15,11 @@ Game::Game(){
 bool Game::isRunning(){
     return mIsRunning;
 }
+
+string Game::possibleActions(){
+    return "";
+}
+
+void Game::doAction(string action){
+
+}

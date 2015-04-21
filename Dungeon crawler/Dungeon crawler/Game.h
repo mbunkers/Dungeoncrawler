@@ -10,6 +10,7 @@
 #define __Dungeon_crawler__Game__
 
 #include <stdio.h>
+using namespace std;
 
 class Game {
 private:
@@ -25,7 +26,8 @@ private:
 public:
     Game();
     bool isRunning();
-
+    string possibleActions();
+    void doAction(string action);
 };
 
 #endif /* defined(__Dungeon_crawler__Game__) */

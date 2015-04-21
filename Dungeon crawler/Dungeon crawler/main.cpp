@@ -26,13 +26,15 @@ int main(int argc, const char * argv[]) {
 
     chdir(path);
     CFRelease(resourcesURL);
-
 #endif
 
     Game game = Game();
 
     while (game.isRunning()) {
-
+        // Present options
+        string input = "";
+        getline(cin, input);
+        // Do action
     }
 
     return 0;

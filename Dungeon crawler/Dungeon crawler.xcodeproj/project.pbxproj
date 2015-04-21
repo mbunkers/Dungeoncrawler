@@ -25,6 +25,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0C41EAA21AE6C31800FCA037 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		0CE03EE71A9A1F15007BBAD5 /* Dungeon crawler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Dungeon crawler"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CE03EEA1A9A1F15007BBAD5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		0CE03EF11A9A1FC9007BBAD5 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -67,6 +68,7 @@
 				0CE03EEA1A9A1F15007BBAD5 /* main.cpp */,
 				0CE03EF31A9A2481007BBAD5 /* Game.cpp */,
 				0CE03EF41A9A2481007BBAD5 /* Game.h */,
+				0C41EAA21AE6C31800FCA037 /* PrefixHeader.pch */,
 			);
 			path = "Dungeon crawler";
 			sourceTree = "<group>";
@@ -212,6 +214,7 @@
 		0CE03EEF1A9A1F15007BBAD5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_PREFIX_HEADER = "Dungeon crawler/PrefixHeader.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -219,6 +222,7 @@
 		0CE03EF01A9A1F15007BBAD5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_PREFIX_HEADER = "Dungeon crawler/PrefixHeader.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -242,6 +246,7 @@
 				0CE03EF01A9A1F15007BBAD5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
