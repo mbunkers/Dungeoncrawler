@@ -29,6 +29,14 @@ public:
     string possibleActions();
     void doAction(string action);
 
+    string actionsForMain();
+    string actionsForAttack();
+    string actionsForRoom();
+
+    void actionInMain(string action);
+    void actionInAttack(string action);
+    void actionInRoom(string action);
+
 private:
     int mRoomSize;
     shared_ptr<Hero> mHero;

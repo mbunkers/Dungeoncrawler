@@ -61,7 +61,7 @@ int main(int argc, const char * argv[]) {
         }
 
     } catch (...) {
-        cout << "Something whent wrong...\nThis game ends now.\n";
+        cout << "Something went terribly wrong...\nThis game ends now.\n";
     }
 
     return 0;

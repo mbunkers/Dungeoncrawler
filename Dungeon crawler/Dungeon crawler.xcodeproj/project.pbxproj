@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C1557B01AE8297100BF9AE6 /* Dungeon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C1557AE1AE8297100BF9AE6 /* Dungeon.cpp */; };
 		0C41EAA61AE6D30C00FCA037 /* Hero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C41EAA41AE6D30C00FCA037 /* Hero.cpp */; };
 		0C41EAA91AE6D3EE00FCA037 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C41EAA71AE6D3EE00FCA037 /* Item.cpp */; };
 		0C41EAAD1AE6DFE200FCA037 /* RoomFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C41EAAB1AE6DFE200FCA037 /* RoomFactory.cpp */; };
@@ -20,17 +21,19 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		0CE03EE51A9A1F15007BBAD5 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
 				0C41EAAE1AE6E2C700FCA037 /* rooms.txt in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0C1557AE1AE8297100BF9AE6 /* Dungeon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Dungeon.cpp; sourceTree = "<group>"; };
+		0C1557AF1AE8297100BF9AE6 /* Dungeon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dungeon.h; sourceTree = "<group>"; };
 		0C41EAA21AE6C31800FCA037 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		0C41EAA41AE6D30C00FCA037 /* Hero.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hero.cpp; sourceTree = "<group>"; };
 		0C41EAA51AE6D30C00FCA037 /* Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hero.h; sourceTree = "<group>"; };
@@ -93,6 +96,8 @@
 				0C41EAAC1AE6DFE200FCA037 /* RoomFactory.h */,
 				0C41EAAF1AE6E8F800FCA037 /* Room.cpp */,
 				0C41EAB01AE6E8F800FCA037 /* Room.h */,
+				0C1557AE1AE8297100BF9AE6 /* Dungeon.cpp */,
+				0C1557AF1AE8297100BF9AE6 /* Dungeon.h */,
 			);
 			path = "Dungeon crawler";
 			sourceTree = "<group>";
@@ -155,6 +160,7 @@
 			files = (
 				0C41EAB11AE6E8F800FCA037 /* Room.cpp in Sources */,
 				0C41EAAD1AE6DFE200FCA037 /* RoomFactory.cpp in Sources */,
+				0C1557B01AE8297100BF9AE6 /* Dungeon.cpp in Sources */,
 				0C41EAA91AE6D3EE00FCA037 /* Item.cpp in Sources */,
 				0C41EAA61AE6D30C00FCA037 /* Hero.cpp in Sources */,
 				0CE03EEB1A9A1F15007BBAD5 /* main.cpp in Sources */,
