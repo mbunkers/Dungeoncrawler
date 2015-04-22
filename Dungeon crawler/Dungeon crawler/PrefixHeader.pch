@@ -1,0 +1,20 @@
+//
+//  PrefixHeader.pch
+//  Dungeon crawler
+//
+//  Created by Marc Bunkers on 21/04/15.
+//  Copyright (c) 2015 Marc Bunkers. All rights reserved.
+//
+
+#ifndef Dungeon_crawler_PrefixHeader_pch
+#define Dungeon_crawler_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#include <string>
+#include <vector>
+#include <fstream>
+#include <sstream>
+
+#endif
