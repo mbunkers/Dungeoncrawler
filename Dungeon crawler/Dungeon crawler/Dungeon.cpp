@@ -7,9 +7,11 @@
 //
 
 #include "Dungeon.h"
+#include "RoomFactory.h"
+#include <iostream>
 
 Dungeon::Dungeon(int size){
-    mMap = vector<Room>();
+    mMap = vector<vector<shared_ptr<Room>>>();
     generateDungeon(size);
 }
 
@@ -17,6 +19,14 @@ void Dungeon::generateDungeon(int size){
     reset();
     
     // Generate a vector with rooms with the given size
+    RoomFactory factory = RoomFactory();
+    for (int i = 0; i < size; i++){
+        mMap.push_back(vector<shared_ptr<Room>>());
+        for (int j = 0; j < size; j++){
+            shared_ptr<Room> room = factory.generateRoom();
+            mMap.at(i).push_back(room);
+        }
+    }
 }
 
 void Dungeon::reset(){

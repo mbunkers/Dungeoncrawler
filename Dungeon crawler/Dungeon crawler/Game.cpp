@@ -7,14 +7,14 @@
 //
 
 #include "Game.h"
-#include "RoomFactory.h"
 
 Game::Game(){
     mIsRunning = false;
 }
 
 void Game::setup(){
-    RoomFactory factory = RoomFactory();
+    mDungeon = make_shared<Dungeon>(mRoomSize);
+    
 }
 
 void Game::setupHero(string name){

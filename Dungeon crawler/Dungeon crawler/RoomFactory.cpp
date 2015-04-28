@@ -14,6 +14,21 @@ RoomFactory::RoomFactory(){
     loadDescriptions();
 }
 
+shared_ptr<Room> RoomFactory::generateRoom(){
+    shared_ptr<Room> room = make_shared<Room>(generateRoomDescription());
+
+    return room;
+
+}
+
+string RoomFactory::generateRoomDescription(){
+    return "It's a " + stringFromVector(mRoomSize) + " " + stringFromVector(mRoomTidyStatus) + " room with an " + stringFromVector(mRoomFloorType) + " floor. You are standing before " + stringFromVector(mRoomFurniture) + " which is lighten by " + stringFromVector(mRoomLightning) + ". In the corner you see some " + stringFromVector(mRoomCorner);
+}
+
+string RoomFactory::stringFromVector(vector<string> data){
+    return data.at(0 + (rand() % (int)(data.size() - 1 + 1)));
+}
+
 void RoomFactory::loadDescriptions(){
     string line;
     ifstream roomsFile("rooms.txt");

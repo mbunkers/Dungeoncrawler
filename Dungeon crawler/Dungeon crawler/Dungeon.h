@@ -16,7 +16,7 @@ using namespace std;
 
 class Dungeon{
 private:
-    vector<Room> mMap;
+    vector<vector<shared_ptr<Room>>> mMap;
     void reset();
 public:
     Dungeon(int size);

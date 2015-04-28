@@ -12,11 +12,13 @@
 #include <stdio.h>
 #include <vector>
 #include <string>
+#include "Room.h"
 using namespace std;
 
 class RoomFactory{
 public:
     RoomFactory();
+    shared_ptr<Room> generateRoom();
 private:
     vector<string> mRoomSize = vector<string>();
     vector<string> mRoomTidyStatus = vector<string>();
@@ -27,6 +29,8 @@ private:
 
     void loadDescriptions();
     vector<string> splittedString(const string line, char delim);
+    string generateRoomDescription();
+    string stringFromVector(vector<string> data);
 };
 
 #endif /* defined(__Dungeon_crawler__RoomFactory__) */

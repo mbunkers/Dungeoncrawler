@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "Hero.h"
 #include <memory>
+#include "Dungeon.h"
 using namespace std;
 
 class Game {
@@ -43,6 +44,7 @@ private:
     shared_ptr<Hero> mHero;
     bool mIsRunning;
     GameStates mGameState = MAIN;
+    shared_ptr<Dungeon> mDungeon;
 };
 
 #endif /* defined(__Dungeon_crawler__Game__) */
