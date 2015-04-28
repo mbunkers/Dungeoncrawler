@@ -7,6 +7,8 @@
 //
 
 #include "RoomFactory.h"
+#include <fstream>
+#include <sstream>
 
 RoomFactory::RoomFactory(){
     loadDescriptions();

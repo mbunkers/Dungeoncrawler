@@ -8,6 +8,9 @@
 
 #include <iostream>
 #include "Game.h"
+#include <string>
+
+using namespace std;
 
 #ifdef __APPLE__
 #include <CoreFoundation/CoreFoundation.h>

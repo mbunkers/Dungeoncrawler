@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "Room.h"
+#include <vector>
 using namespace std;
 
 class Dungeon{

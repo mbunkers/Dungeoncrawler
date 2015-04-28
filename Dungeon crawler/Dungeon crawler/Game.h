@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "Hero.h"
+#include <memory>
 using namespace std;
 
 class Game {

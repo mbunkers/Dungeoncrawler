@@ -10,6 +10,8 @@
 #define __Dungeon_crawler__Hero__
 
 #include <stdio.h>
+#include <string>
+#include <vector>
 #include "Item.h"
 using namespace std;
 

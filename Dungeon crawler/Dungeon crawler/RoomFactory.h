@@ -10,6 +10,8 @@
 #define __Dungeon_crawler__RoomFactory__
 
 #include <stdio.h>
+#include <vector>
+#include <string>
 using namespace std;
 
 class RoomFactory{
