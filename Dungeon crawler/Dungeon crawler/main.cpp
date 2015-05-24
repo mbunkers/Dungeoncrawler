@@ -58,7 +58,7 @@ int main(int argc, const char * argv[]) {
 
         while (game.isRunning()) {
             // Present options
-
+            game.possibleActions();
             cout << UserActions::prompt;
             string input = "";
             getline(cin, input);
