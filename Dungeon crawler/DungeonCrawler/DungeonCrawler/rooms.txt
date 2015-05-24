@@ -1,0 +1,6 @@
+big,medium,small
+nasty,tidy
+wooden,stone,grass
+a table with leftovers,a bed,an empty chest,a skeleton,a dead men,a dead women
+one window,a campfire,candlelight,fireplace,torch
+water,crawling tiny spiders,a mouse,dogpoo

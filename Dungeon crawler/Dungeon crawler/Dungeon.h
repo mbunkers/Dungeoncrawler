@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include "Room.h"
 #include <vector>
+#include <memory>
+
 using namespace std;
 
 class Dungeon{

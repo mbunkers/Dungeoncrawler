@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <vector>
 #include <string>
+#include <memory>
 #include "Room.h"
 using namespace std;
 
