@@ -10,7 +10,6 @@ using namespace std;
 
 
 #include <stdio.h>
-#include <tchar.h>
 #include <iostream>
 #include <memory>
 #include <algorithm>

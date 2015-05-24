@@ -8,7 +8,6 @@
 
 #include "Game.h"
 
-
 Game::Game(){
     mIsRunning = false;
 }

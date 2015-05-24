@@ -3,13 +3,13 @@
 //  Dungeon crawler
 //
 //  Created by Marc Bunkers on 22/02/15.
-//  Copyright (c) 2015 Marc Bunkers. All rights reserved.
+//  Copyright (c) 2015 Marc Bunkers & Leon van Tuijl. All rights reserved.
 //
 
+#include "stdafx.h"
 #include <iostream>
 #include "Game.h"
 #include "InputHandler.h"
-#include <string>
 
 using namespace std;
 

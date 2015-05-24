@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 Marc Bunkers. All rights reserved.
 //
 
+#include "stdafx.h"
 #include "Dungeon.h"
 #include "RoomFactory.h"
 #include <iostream>
-#include <string>
 
 Dungeon::Dungeon(int size){
     mMap = vector<vector<shared_ptr<Room>>>();
