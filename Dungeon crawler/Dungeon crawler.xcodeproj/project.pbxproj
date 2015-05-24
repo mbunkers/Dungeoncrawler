@@ -63,10 +63,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0CE03EDE1A9A1F15007BBAD5 = {
+		0CAE02C41B11CAC100802649 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				0CE03EF11A9A1FC9007BBAD5 /* CoreFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0CAE02C51B11CAD200802649 /* Rooms */ = {
+			isa = PBXGroup;
+			children = (
+				0C41EAAA1AE6DB6300FCA037 /* rooms.txt */,
+				0C41EAAB1AE6DFE200FCA037 /* RoomFactory.cpp */,
+				0C41EAAC1AE6DFE200FCA037 /* RoomFactory.h */,
+				0C41EAAF1AE6E8F800FCA037 /* Room.cpp */,
+				0C41EAB01AE6E8F800FCA037 /* Room.h */,
+			);
+			name = Rooms;
+			sourceTree = "<group>";
+		};
+		0CAE02C61B11CAD700802649 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				0CE03EEA1A9A1F15007BBAD5 /* main.cpp */,
+				0CE03EF31A9A2481007BBAD5 /* Game.cpp */,
+				0CE03EF41A9A2481007BBAD5 /* Game.h */,
+				0C1557AE1AE8297100BF9AE6 /* Dungeon.cpp */,
+				0C1557AF1AE8297100BF9AE6 /* Dungeon.h */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		0CAE02C71B11CAF000802649 /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				0C41EAA41AE6D30C00FCA037 /* Hero.cpp */,
+				0C41EAA51AE6D30C00FCA037 /* Hero.h */,
+				0C41EAA71AE6D3EE00FCA037 /* Item.cpp */,
+				0C41EAA81AE6D3EE00FCA037 /* Item.h */,
+			);
+			name = Characters;
+			sourceTree = "<group>";
+		};
+		0CE03EDE1A9A1F15007BBAD5 = {
+			isa = PBXGroup;
+			children = (
+				0CAE02C41B11CAC100802649 /* Frameworks */,
 				0CE03EE91A9A1F15007BBAD5 /* Dungeon crawler */,
 				0CE03EE81A9A1F15007BBAD5 /* Products */,
 			);
@@ -83,21 +126,10 @@
 		0CE03EE91A9A1F15007BBAD5 /* Dungeon crawler */ = {
 			isa = PBXGroup;
 			children = (
-				0C41EAAA1AE6DB6300FCA037 /* rooms.txt */,
-				0CE03EEA1A9A1F15007BBAD5 /* main.cpp */,
-				0CE03EF31A9A2481007BBAD5 /* Game.cpp */,
-				0CE03EF41A9A2481007BBAD5 /* Game.h */,
+				0CAE02C71B11CAF000802649 /* Characters */,
+				0CAE02C61B11CAD700802649 /* Main */,
+				0CAE02C51B11CAD200802649 /* Rooms */,
 				0C41EAA21AE6C31800FCA037 /* PrefixHeader.pch */,
-				0C41EAA41AE6D30C00FCA037 /* Hero.cpp */,
-				0C41EAA51AE6D30C00FCA037 /* Hero.h */,
-				0C41EAA71AE6D3EE00FCA037 /* Item.cpp */,
-				0C41EAA81AE6D3EE00FCA037 /* Item.h */,
-				0C41EAAB1AE6DFE200FCA037 /* RoomFactory.cpp */,
-				0C41EAAC1AE6DFE200FCA037 /* RoomFactory.h */,
-				0C41EAAF1AE6E8F800FCA037 /* Room.cpp */,
-				0C41EAB01AE6E8F800FCA037 /* Room.h */,
-				0C1557AE1AE8297100BF9AE6 /* Dungeon.cpp */,
-				0C1557AF1AE8297100BF9AE6 /* Dungeon.h */,
 			);
 			path = "Dungeon crawler";
 			sourceTree = "<group>";
