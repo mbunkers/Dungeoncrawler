@@ -72,7 +72,7 @@ void Game::doAction(string action){
 
 // Find suitable action when in main
 void Game::actionInMain(string action){
-
+    
 }
 
 // Find suitable action when in attack

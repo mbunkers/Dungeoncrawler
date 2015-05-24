@@ -60,6 +60,7 @@ int main(int argc, const char * argv[]) {
             cout << UserActions::prompt;
             string input = "";
             getline(cin, input);
+            game.doAction(input);
             // Do action
         }
 
