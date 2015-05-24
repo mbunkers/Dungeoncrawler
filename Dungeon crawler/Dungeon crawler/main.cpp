@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "Game.h"
+#include "InputHandler.h"
 #include <string>
 
 using namespace std;
@@ -36,7 +37,8 @@ int main(int argc, const char * argv[]) {
 #endif
 
     try {
-
+		InputHandler inputHandler = InputHandler();
+		inputHandler.handleInput("Title");
         Game game = Game();
 
         cout << "Kind warrior, what is your name?\n";
