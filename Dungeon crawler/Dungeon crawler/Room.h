@@ -16,9 +16,24 @@ using namespace std;
 class Room{
 private:
     string mDescription;
+    bool mWestDirection = false;
+    bool mNorthDirection = false;
+    bool mEastDirection = false;
+    bool mSouthDirection = false;
+    bool mUpDirection = false;
+    bool mDownDirection = false;
+    bool mHasBeenVisited = false;
 public:
+    enum Direction{
+        WEST, EAST, NORTH, SOUTH, UP, DOWN
+    };
+    
     Room(string description);
     string description();
+    bool canGoToDirection(Direction direction);
+    void setDirectionWithValue(Direction direction, bool value);
+    bool hasBeenVisited();
+    void setVisited();
 };
 
 #endif /* defined(__Dungeon_crawler__Room__) */

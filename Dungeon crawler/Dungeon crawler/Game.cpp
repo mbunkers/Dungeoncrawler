@@ -33,6 +33,7 @@ bool Game::isRunning(){
 }
 
 string Game::possibleActions(){
+    mDungeon->print();
     switch (mGameState) {
         case MAIN:
             return actionsForMain();

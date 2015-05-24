@@ -18,7 +18,6 @@ shared_ptr<Room> RoomFactory::generateRoom(){
     shared_ptr<Room> room = make_shared<Room>(generateRoomDescription());
 
     return room;
-
 }
 
 string RoomFactory::generateRoomDescription(){

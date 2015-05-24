@@ -20,9 +20,17 @@ class Dungeon{
 private:
     vector<vector<shared_ptr<Room>>> mMap;
     void reset();
+    
+    void printRoomRow(shared_ptr<Room> room, size_t index, size_t subIndex);
+    void printPath(shared_ptr<Room> room, size_t index);
+    void printMap();
+    void printLegenda();
+    
+    
 public:
     Dungeon(int size);
     void generateDungeon(int size);
+    void print();
 };
 
 #endif /* defined(__Dungeon_crawler__Dungeon__) */
