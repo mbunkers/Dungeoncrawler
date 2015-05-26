@@ -17,6 +17,8 @@ private:
     string mDescription;
     bool mHasBeenVisited = false;
     vector<shared_ptr<Enemy>> mEnemies = vector<shared_ptr<Enemy>>();
+	bool mIsWall;
+	bool mIsAdded;
     
 public:
     Room(string description);
@@ -28,6 +30,12 @@ public:
     shared_ptr<Room> mSouth = nullptr;
     bool canGoUp = false;
     bool canGoDown = false;
+
+	int X, Y;
+	bool algorithmIsWall();
+	void algorithmChecked();
+	bool algorithmIsAdded();
+	void algorithmIsListed();
     
     bool hasBeenVisited();
     void setVisited();

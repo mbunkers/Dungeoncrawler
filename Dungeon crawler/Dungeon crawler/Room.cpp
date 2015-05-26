@@ -10,6 +10,8 @@
 
 Room::Room(string description){
     mDescription = description;
+	mIsAdded = false;
+	mIsWall = true;
 }
 
 string Room::description(){
@@ -51,4 +53,20 @@ void Room::printPossibleMovements(){
     if (canGoDown){
         cout << "[Down] Go deeper to the monsters lair\n";
     }
+}
+
+bool Room::algorithmIsWall(){
+	return mIsWall;
+}
+
+bool Room::algorithmIsAdded(){
+	return mIsAdded;
+}
+
+void Room::algorithmChecked(){
+	mIsAdded = true;
+}
+
+void Room::algorithmIsListed(){
+	mIsWall = false;
 }
