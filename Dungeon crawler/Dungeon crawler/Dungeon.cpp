@@ -65,8 +65,8 @@ void Dungeon::generateDungeon(int size){
     
     shared_ptr<Room> room1 = mMap.at(0).at(0);
     shared_ptr<Room> room2 = mMap.at(mMap.size() - 1).at(mMap.size() - 1);
-    room1->canGoDown = true;
-    room2->canGoUp = true;
+    room1->canGoUp = true;
+    room2->canGoDown = true;
 }
 
 void Dungeon::print(shared_ptr<Hero> player){

@@ -122,11 +122,19 @@ bool Game::canDoActionInRoom(string action){
                 }
                 else {
                     if (action == "Up"){
-                        cout << "Not yet supported\n";
+                        if (mHero->mCurrentRoom->canGoUp){
+                            if (mHero->toPreviousDungeon()){
+                                setup();
+                            }
+                        }
                     }
                     else {
                         if (action == "Down"){
-                            cout << "Not yet supported\n";
+                            if (mHero->mCurrentRoom->canGoDown){
+                                if (mHero->toNextDungeon()){
+                                    setup();
+                                }
+                            }
                         }
                     }
                 }

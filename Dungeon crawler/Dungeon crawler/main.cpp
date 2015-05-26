@@ -53,7 +53,8 @@ int main(int argc, const char * argv[]) {
         cout << UserActions::prompt;
         getline(cin, input);
         game.setRoomSize(atoi(input.c_str()));
-	game.refreshScreen();
+        game.refreshScreen();
+        
         while (game.isRunning()) {
             // Present options
             game.possibleActions();
@@ -64,6 +65,7 @@ int main(int argc, const char * argv[]) {
             cout << "\n";
             game.doAction(input);
             cout << "\n";
+            game.refreshScreen();
         }
 
     } catch (...) {

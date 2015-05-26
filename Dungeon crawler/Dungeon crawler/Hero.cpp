@@ -18,11 +18,13 @@ Hero::Hero(string name){
 	mPerception = 0;
 	mLevelingSpeed = 15;
 	mExperiencePoints = 0;
+    mCurrentDungeon = 0;
 	setRequiredXp();
 }
 
 void Hero::printStats(){
 	cout << ("<-"+ mName + "->\n");
+    cout << ("Dungeon: " + to_string(mCurrentDungeon) + "\n");
 	cout << ("Level: " + to_string(mLevel) + "\n");
 	cout << ("Experience Points: " + to_string(mExperiencePoints) + "/" + to_string(mRequiredXp) + "\n");
 	cout << ("HP: " + to_string(mCurrentHealth) + "/" + to_string(mHealthPoints) + "\n");
@@ -46,4 +48,20 @@ void Hero::addXp(int xp){
 
 void Hero::setRequiredXp(){
 	mRequiredXp = mLevel*mLevelingSpeed;
+}
+
+bool Hero::toNextDungeon(){
+    if (mCurrentDungeon < 9){
+        mCurrentDungeon++;
+        return true;
+    }
+    return false;
+}
+
+bool Hero::toPreviousDungeon(){
+    if (mCurrentDungeon > 0){
+        mCurrentDungeon--;
+        return true;
+    }
+    return false;
 }

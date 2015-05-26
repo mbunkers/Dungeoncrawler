@@ -16,7 +16,7 @@
 class Hero{
 private:
     string mName;
-	int mLevel, mHealthPoints, mExperiencePoints, mAttackPoints, mDefencePoints, mPerception, mLevelingSpeed, mRequiredXp, mCurrentHealth;
+	int mLevel, mHealthPoints, mExperiencePoints, mAttackPoints, mDefencePoints, mPerception, mLevelingSpeed, mRequiredXp, mCurrentHealth, mCurrentDungeon;
 	vector<shared_ptr<Item>> mItems;
 	void levelUp();
 	void setRequiredXp();
@@ -26,6 +26,8 @@ public:
     shared_ptr<Room> mCurrentRoom = nullptr;
 	void addXp(int xp);
 	void printStats();
+    bool toNextDungeon();
+    bool toPreviousDungeon();
 	
 };
 
