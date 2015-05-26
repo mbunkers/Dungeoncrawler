@@ -9,11 +9,9 @@
 #ifndef __Dungeon_crawler__Hero__
 #define __Dungeon_crawler__Hero__
 
-#include <stdio.h>
-#include <string>
-#include <vector>
+#include "stdafx.h"
 #include "Item.h"
-using namespace std;
+#include "Room.h"
 
 class Hero{
 private:
@@ -22,6 +20,7 @@ private:
     vector<Item> mItems;
 public:
     Hero(string name);
+    shared_ptr<Room> mCurrentRoom = nullptr;
 };
 
 #endif /* defined(__Dungeon_crawler__Hero__) */

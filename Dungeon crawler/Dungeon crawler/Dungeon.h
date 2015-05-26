@@ -11,6 +11,7 @@
 
 #include "stdafx.h"
 #include "Room.h"
+#include "Hero.h"
 
 using namespace std;
 
@@ -19,16 +20,17 @@ private:
     vector<vector<shared_ptr<Room>>> mMap;
     void reset();
     
-    void printRoomRow(shared_ptr<Room> room, size_t index, size_t subIndex);
+    void printRoomRow(shared_ptr<Room> room, size_t index, size_t subIndex, shared_ptr<Hero> player);
     void printPath(shared_ptr<Room> room, size_t index);
-    void printMap();
+    void printMap(shared_ptr<Hero> player);
     void printLegenda();
     
     
 public:
     Dungeon(int size);
+    shared_ptr<Room> getStartRoom();
     void generateDungeon(int size);
-    void print();
+    void print(shared_ptr<Hero> player);
 };
 
 #endif /* defined(__Dungeon_crawler__Dungeon__) */

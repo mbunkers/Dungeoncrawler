@@ -14,7 +14,8 @@ Game::Game(){
 
 void Game::setup(){
     mDungeon = make_shared<Dungeon>(mRoomSize);
-    
+    mHero->mCurrentRoom = mDungeon->getStartRoom();
+    mHero->mCurrentRoom->setVisited();
 }
 
 void Game::setupHero(string name){
@@ -33,13 +34,14 @@ bool Game::isRunning(){
 }
 
 string Game::possibleActions(){
-    mDungeon->print();
+    mDungeon->print(mHero);
     switch (mGameState) {
         case MAIN:
             return actionsForMain();
         case ATTACK:
             return actionsForAttack();
         case ROOM:
+            mHero->mCurrentRoom->printPossibleMovements();
             return actionsForRoom();
         default:
             return "";
@@ -83,5 +85,44 @@ void Game::actionInAttack(string action){
 
 // Find suitable action when in a room
 void Game::actionInRoom(string action){
-
+    if (action == "West"){
+        if (mHero->mCurrentRoom->mWest != nullptr){
+            mHero->mCurrentRoom = mHero->mCurrentRoom->mWest;
+            mHero->mCurrentRoom->setVisited();
+        }
+    }
+    else {
+        if (action == "North"){
+            if (mHero->mCurrentRoom->mNorth != nullptr){
+                mHero->mCurrentRoom = mHero->mCurrentRoom->mNorth;
+                mHero->mCurrentRoom->setVisited();
+            }
+        }
+        else {
+            if (action == "East"){
+                if (mHero->mCurrentRoom->mEast != nullptr){
+                    mHero->mCurrentRoom = mHero->mCurrentRoom->mEast;
+                    mHero->mCurrentRoom->setVisited();
+                }
+            }
+            else {
+                if (action == "South"){
+                    if (mHero->mCurrentRoom->mSouth != nullptr){
+                        mHero->mCurrentRoom = mHero->mCurrentRoom->mSouth;
+                        mHero->mCurrentRoom->setVisited();
+                    }
+                }
+                else {
+                    if (action == "Up"){
+                        cout << "Not yet supported";
+                    }
+                    else {
+                        if (action == "Down"){
+                            cout << "Not yet supported";
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

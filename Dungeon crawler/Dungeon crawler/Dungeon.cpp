@@ -16,6 +16,10 @@ Dungeon::Dungeon(int size){
     generateDungeon(size);
 }
 
+shared_ptr<Room> Dungeon::getStartRoom(){
+    return mMap.at(0).at(0);
+}
+
 void Dungeon::generateDungeon(int size){
     reset();
     
@@ -25,26 +29,57 @@ void Dungeon::generateDungeon(int size){
         mMap.push_back(vector<shared_ptr<Room>>());
         for (int j = 0; j < size; j++){
             shared_ptr<Room> room = factory.generateRoom();
-            room->setDirectionWithValue(Room::WEST, true);
-            room->setDirectionWithValue(Room::NORTH, true);
-            room->setDirectionWithValue(Room::EAST, true);
-            room->setDirectionWithValue(Room::SOUTH, true);
             mMap.at(i).push_back(room);
         }
+        
     }
+    
+    for (size_t i = 0; i < mMap.size(); i++){
+        for (size_t j = 0; j < mMap.at(i).size(); j++){
+            
+            if (j < mMap.at(i).size() - 1){
+                shared_ptr<Room> room1 = mMap.at(i).at(j);
+                shared_ptr<Room> room2 = mMap.at(i).at(j + 1);
+                room1->mEast = room2;
+                room2->mWest = room1;
+            }
+        }
+        
+        if (i % 2){
+            if (i < mMap.size() - 1){
+                shared_ptr<Room> room1 = mMap.at(i).at(0);
+                shared_ptr<Room> room2 = mMap.at(i + 1).at(1);
+                room1->mSouth = room2;
+                room2->mNorth = room1;
+            }
+        }
+        else {
+            if (i < mMap.size() - 1){
+                shared_ptr<Room> room1 = mMap.at(i).at(mMap.size() - 1);
+                shared_ptr<Room> room2 = mMap.at(i + 1).at(mMap.size() - 1);
+                room1->mSouth = room2;
+                room2->mNorth = room1;
+            }
+        }
+    }
+    
+    shared_ptr<Room> room1 = mMap.at(0).at(0);
+    shared_ptr<Room> room2 = mMap.at(mMap.size() - 1).at(mMap.size() - 1);
+    room1->canGoDown = true;
+    room2->canGoUp = true;
 }
 
-void Dungeon::print(){
-    printMap();
+void Dungeon::print(shared_ptr<Hero> player){
+    printMap(player);
     cout << "\n";
     printLegenda();
 }
 
-void Dungeon::printMap(){
+void Dungeon::printMap(shared_ptr<Hero> player){
     for (size_t i = 0; i < mMap.size(); i++){
         for (size_t j = 0; j < mMap.at(i).size(); j++){
             shared_ptr<Room> room = mMap.at(i).at(j);
-            printRoomRow(room, i, j);
+            printRoomRow(room, i, j, player);
             
         }
         cout << "\n";
@@ -53,7 +88,6 @@ void Dungeon::printMap(){
         for (size_t j = 0; j < mMap.at(i).size(); j++){
             shared_ptr<Room> room = mMap.at(i).at(j);
             printPath(room, i);
-            
         }
         
         if (i < mMap.size() - 1){
@@ -64,6 +98,7 @@ void Dungeon::printMap(){
 
 void Dungeon::printLegenda(){
     cout << "Legenda:\n";
+    cout << "P -  : You\n";
     cout << "| -  : Path\n";
     cout << "S    : Start location\n";
     cout << "E    : Boss\n";
@@ -74,22 +109,27 @@ void Dungeon::printLegenda(){
     cout << "\n";
 }
 
-void Dungeon::printRoomRow(shared_ptr<Room> room, size_t index, size_t subIndex){
+void Dungeon::printRoomRow(shared_ptr<Room> room, size_t index, size_t subIndex, shared_ptr<Hero> player){
     string output = "";
     
-    if (!room->hasBeenVisited()){
-        output.append(".");
+    if (room == player->mCurrentRoom){
+        output.append("P");
     }
     else {
-        if (room->canGoToDirection(Room::UP)){
-            output.append("H");
+        if (!room->hasBeenVisited()){
+            output.append(".");
         }
         else {
-            if (room->canGoToDirection(Room::DOWN)){
-                output.append("L");
+            if (room->canGoUp){
+                output.append("H");
             }
             else {
-                output.append("N");
+                if (room->canGoDown){
+                    output.append("L");
+                }
+                else {
+                    output.append("N");
+                }
             }
         }
     }
@@ -97,7 +137,7 @@ void Dungeon::printRoomRow(shared_ptr<Room> room, size_t index, size_t subIndex)
     // Out of bounds check for path
     if (subIndex < mMap.at(index).size() - 1){
         // Check for right
-        if (room->canGoToDirection(Room::EAST)){
+        if (room->mEast != nullptr){
             output.append("-");
         }
         else {
@@ -114,7 +154,7 @@ void Dungeon::printPath(shared_ptr<Room> room, size_t index){
     // Out of bounds check for path
     if (index < mMap.size() - 1){
         // Check for right
-        if (room->canGoToDirection(Room::SOUTH)){
+        if (room->mSouth != nullptr){
             output.append("| ");
         }
         else {

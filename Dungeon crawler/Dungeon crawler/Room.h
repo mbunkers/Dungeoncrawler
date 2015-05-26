@@ -14,24 +14,23 @@
 class Room{
 private:
     string mDescription;
-    bool mWestDirection = false;
-    bool mNorthDirection = false;
-    bool mEastDirection = false;
-    bool mSouthDirection = false;
-    bool mUpDirection = false;
-    bool mDownDirection = false;
     bool mHasBeenVisited = false;
-public:
-    enum Direction{
-        WEST, EAST, NORTH, SOUTH, UP, DOWN
-    };
     
+public:
     Room(string description);
     string description();
-    bool canGoToDirection(Direction direction);
-    void setDirectionWithValue(Direction direction, bool value);
+    
+    shared_ptr<Room> mWest = nullptr;
+    shared_ptr<Room> mNorth = nullptr;
+    shared_ptr<Room> mEast = nullptr;
+    shared_ptr<Room> mSouth = nullptr;
+    bool canGoUp = false;
+    bool canGoDown = false;
+    
     bool hasBeenVisited();
     void setVisited();
+    
+    void printPossibleMovements();
 };
 
 #endif /* defined(__Dungeon_crawler__Room__) */
