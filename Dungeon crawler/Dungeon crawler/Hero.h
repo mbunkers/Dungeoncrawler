@@ -27,7 +27,7 @@ private:
 public:
     Hero(string name);
 	void addXp(int xp);
-	shared_ptr<vector<string>> getStats();
+	void printStats();
 	
 };
 

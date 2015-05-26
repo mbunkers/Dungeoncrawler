@@ -10,6 +10,9 @@
 
 Game::Game(){
     mIsRunning = false;
+	mDungeon = nullptr;
+	mHero = nullptr;
+	mInputHandler = InputHandler();
 }
 
 void Game::setup(){
@@ -32,8 +35,7 @@ bool Game::isRunning(){
     return mIsRunning;
 }
 
-string Game::possibleActions(){
-    mDungeon->print();
+string Game::possibleActions(){    
     switch (mGameState) {
         case MAIN:
             return actionsForMain();
@@ -84,4 +86,15 @@ void Game::actionInAttack(string action){
 // Find suitable action when in a room
 void Game::actionInRoom(string action){
 
+}
+
+void Game::refreshScreen(){
+	mInputHandler.handleInput("CLEAR");
+	mInputHandler.handleInput("TITLE");
+	if (mDungeon != nullptr){
+		mDungeon->print();
+	}
+	if (mHero != nullptr){
+		mHero->printStats();
+	}	
 }

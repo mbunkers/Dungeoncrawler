@@ -9,7 +9,6 @@
 #include "stdafx.h"
 #include <iostream>
 #include "Game.h"
-#include "InputHandler.h"
 
 using namespace std;
 
@@ -37,8 +36,8 @@ int main(int argc, const char * argv[]) {
 #endif
 
     try {
-		InputHandler inputHandler = InputHandler();
-		inputHandler.handleInput("Title");
+		
+		
         Game game = Game();
 
         cout << "Kind warrior, what is your name?\n";
@@ -46,24 +45,24 @@ int main(int argc, const char * argv[]) {
 
         // Present options
         string input = "";
-        game.setupHero(input);
         getline(cin, input);
+		game.setupHero(input);
 
         cout << "Welcome " << input << "!\nThere is a treasure deep down and you want it!\n";
         cout << "What size should the dungeons be?\n";
         cout << UserActions::prompt;
         getline(cin, input);
         game.setRoomSize(atoi(input.c_str()));
-
-
+	
         while (game.isRunning()) {
             // Present options
+			game.refreshScreen();
             game.possibleActions();
             cout << UserActions::prompt;
             string input = "";
             getline(cin, input);
             game.doAction(input);
-            // Do action
+            
         }
 
     } catch (...) {

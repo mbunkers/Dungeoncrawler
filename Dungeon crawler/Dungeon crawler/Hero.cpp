@@ -16,18 +16,19 @@ Hero::Hero(string name){
     mAttackPoints = 10;
     mDefencePoints = 10;
 	mPerception = 0;
+	mLevelingSpeed = 15;
+	mExperiencePoints = 0;
 	setRequiredXp();
 }
 
-shared_ptr<vector<string>> Hero::getStats(){
-	shared_ptr<vector<string>> stats = shared_ptr<vector<string>>();
-	stats->push_back("Level: " + to_string(mLevel));
-	stats->push_back("Experience Points: " + to_string(mExperiencePoints) + "//" + to_string(mRequiredXp));
-	stats->push_back("HP: " + to_string(mCurrentHealth) + "//" + to_string(mHealthPoints));
-	stats->push_back("Attack: " + to_string(mAttackPoints));
-	stats->push_back("Defence: " + to_string(mDefencePoints));
-	stats->push_back("Perception: " + to_string(mPerception));
-	return stats;
+void Hero::printStats(){
+	cout << ("<-"+ mName + "->\n");
+	cout << ("Level: " + to_string(mLevel) + "\n");
+	cout << ("Experience Points: " + to_string(mExperiencePoints) + "/" + to_string(mRequiredXp) + "\n");
+	cout << ("HP: " + to_string(mCurrentHealth) + "/" + to_string(mHealthPoints) + "\n");
+	cout << ("Attack: " + to_string(mAttackPoints) + "\n");
+	cout << ("Defence: " + to_string(mDefencePoints) + "\n");
+	cout << ("Perception: " + to_string(mPerception) + "\n");
 }
 
 void Hero::levelUp(){
