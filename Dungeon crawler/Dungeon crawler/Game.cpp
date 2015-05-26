@@ -17,8 +17,8 @@ Game::Game(){
 
 void Game::setup(){
     mDungeon = make_shared<Dungeon>(mRoomSize);
-    mHero->mCurrentRoom = mDungeon->getStartRoom();
-    mHero->mCurrentRoom->setVisited();
+    mHero->mRoomHistory.push_back(mDungeon->getStartRoom());
+    mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->setVisited();
 }
 
 void Game::setupHero(string name){
@@ -43,7 +43,6 @@ string Game::possibleActions(){
         case ATTACK:
             return actionsForAttack();
         case ROOM:
-            mHero->mCurrentRoom->printPossibleMovements();
             return actionsForRoom();
         default:
             return "";
@@ -55,25 +54,26 @@ string Game::actionsForMain(){
 }
 
 string Game::actionsForAttack(){
-    return "";
+    return mHero->attackActions();
 }
 
 string Game::actionsForRoom(){
+    mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->printPossibleMovements();
     return "";
 }
 
-void Game::doAction(string action){
+string Game::doAction(string action){
     switch (mGameState) {
         case MAIN:
             actionInMain(action);
         case ATTACK:
-            actionInAttack(action);
+            return actionInAttack(action) + "\n";
         case ROOM:
             if (!canDoActionInRoom(action)){
-                cout << "You can't do this!\n";
+                return "You can't do this!\n";
             }
         default:
-            break;
+            return "\n";
     }
 }
 
@@ -83,56 +83,122 @@ void Game::actionInMain(string action){
 }
 
 // Find suitable action when in attack
-void Game::actionInAttack(string action){
-
+string Game::actionInAttack(string action){
+    if (action == "Flee"){
+        mGameState = GameStates::ROOM;
+        return "You fled from the enemies";
+    }
+    else {
+        vector<string> commands = splittedString(action, ' ');
+        if (commands.size() == 2){
+            if (commands.at(0) == "Fight"){
+                int index = atoi(commands.at(1).c_str());
+                if (index < mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mEnemies.size()){
+                    shared_ptr<Room> room = mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1);
+                    shared_ptr<Enemy> enemy = room->mEnemies.at(index);
+                    if (!enemy->couldDefend(mHero)){
+                        mHero->attack(enemy);
+                        mHero->addXp(10);
+                    }
+                    if (enemy->getHP() == 0){
+                        room->mEnemies.erase(room->mEnemies.begin() + index);
+                        return "You've defeaten this enemy!\n";
+                    }
+                    
+                    for (size_t i = 0; i < room->mEnemies.size(); i++){
+                        shared_ptr<Enemy> enemy = room->mEnemies.at(i);
+                        if (!mHero->couldDefend(enemy)){
+                            enemy->Character::attack(mHero);
+                        }
+                        
+                        if (mHero->getHP() == 0){
+                            return "You've been defeaten!\n";
+                        }
+                    }
+                }
+            }
+            else {
+                if (commands.at(0) == "Use"){
+                    
+                }
+            }
+        }
+    }
+    
+    shared_ptr<Room> room = mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1);
+    if (room->mEnemies.size() == 0){
+        mGameState = GameStates::ROOM;
+        return "You've defeaten all enemies here!";
+    }
+    
+    return "";
 }
 
 // Find suitable action when in a room
 bool Game::canDoActionInRoom(string action){
-    if (action == "West"){
-        if (mHero->mCurrentRoom->mWest != nullptr){
-            mHero->mCurrentRoom = mHero->mCurrentRoom->mWest;
-            mHero->mCurrentRoom->setVisited();
+    
+    if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->hasEnemies()){
+        if (action == "Fight"){
+            mGameState = GameStates::ATTACK;
             return true;
+        }
+        else {
+            if (action == "Flee"){
+                if (mHero->mRoomHistory.size() > 1){
+                    mHero->mRoomHistory.pop_back();
+                    return true;
+                }
+            }
         }
     }
     else {
-        if (action == "North"){
-            if (mHero->mCurrentRoom->mNorth != nullptr){
-                mHero->mCurrentRoom = mHero->mCurrentRoom->mNorth;
-                mHero->mCurrentRoom->setVisited();
+        if (action == "West"){
+            if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mWest != nullptr){
+                mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mWest);
+                mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mWest->setVisited();
                 return true;
             }
         }
         else {
-            if (action == "East"){
-                if (mHero->mCurrentRoom->mEast != nullptr){
-                    mHero->mCurrentRoom = mHero->mCurrentRoom->mEast;
-                    mHero->mCurrentRoom->setVisited();
+            if (action == "North"){
+                if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mNorth != nullptr){
+                    mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mNorth);
+                    mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mNorth->setVisited();
                     return true;
                 }
             }
             else {
-                if (action == "South"){
-                    if (mHero->mCurrentRoom->mSouth != nullptr){
-                        mHero->mCurrentRoom = mHero->mCurrentRoom->mSouth;
-                        mHero->mCurrentRoom->setVisited();
+                if (action == "East"){
+                    if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mEast != nullptr){
+                        mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mEast);
+                        mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mEast->setVisited();
                         return true;
                     }
                 }
                 else {
-                    if (action == "Up"){
-                        if (mHero->mCurrentRoom->canGoUp){
-                            if (mHero->toPreviousDungeon()){
-                                setup();
-                            }
+                    if (action == "South"){
+                        if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mSouth != nullptr){
+                            mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mSouth);
+                            mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mSouth->setVisited();
+                            return true;
                         }
                     }
                     else {
-                        if (action == "Down"){
-                            if (mHero->mCurrentRoom->canGoDown){
-                                if (mHero->toNextDungeon()){
+                        if (action == "Up"){
+                            if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->canGoUp){
+                                if (mHero->toPreviousDungeon()){
                                     setup();
+                                }
+                                return true;
+                            }
+                        }
+                        else {
+                            if (action == "Down"){
+                                if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->canGoDown){
+                                    if (mHero->toNextDungeon()){
+                                        setup();
+                                    }
+                                    return true;
                                 }
                             }
                         }
@@ -141,6 +207,7 @@ bool Game::canDoActionInRoom(string action){
             }
         }
     }
+    
     return false;
 }
 
@@ -158,4 +225,14 @@ void Game::refreshScreen(){
 		mHero->printItems();
 	}
 	mInputHandler.setTextColor(mInputHandler.WHITE);
+}
+
+vector<string> Game::splittedString(const string line, char delim){
+    vector<string> elems;
+    stringstream ss(line);
+    string item;
+    while (getline(ss, item, delim)) {
+        elems.push_back(item);
+    }
+    return elems;
 }

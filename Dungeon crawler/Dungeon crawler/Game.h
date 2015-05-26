@@ -27,6 +27,7 @@ private:
 	GameStates mGameState = MAIN;
 	shared_ptr<Dungeon> mDungeon;
 	InputHandler mInputHandler;
+    vector<string> splittedString(const string line, char delim);
 public:
     Game();
 	void refreshScreen();
@@ -35,14 +36,14 @@ public:
     bool isRunning();
     void setup();
     string possibleActions();
-    void doAction(string action);
+    string doAction(string action);
 
     string actionsForMain();
     string actionsForAttack();
     string actionsForRoom();
 
     void actionInMain(string action);
-    void actionInAttack(string action);
+    string actionInAttack(string action);
     bool canDoActionInRoom(string action);
 
 

@@ -12,7 +12,7 @@
 #include "stdafx.h"
 #include "Character.h"
 
-class Enemy: Character{
+class Enemy: public Character{
 private:
     bool mIsBoss = false;
     

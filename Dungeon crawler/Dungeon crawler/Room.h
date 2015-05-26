@@ -16,13 +16,15 @@ class Room{
 private:
     string mDescription;
     bool mHasBeenVisited = false;
-    vector<shared_ptr<Enemy>> mEnemies = vector<shared_ptr<Enemy>>();
+    
 	bool mIsWall;
 	bool mIsAdded;
     
 public:
     Room(string description);
     string description();
+    
+    vector<shared_ptr<Enemy>> mEnemies = vector<shared_ptr<Enemy>>();
     
     shared_ptr<Room> mWest = nullptr;
     shared_ptr<Room> mNorth = nullptr;
@@ -40,6 +42,8 @@ public:
     bool hasBeenVisited();
     void setVisited();
     void addEnemies();
+    bool hasEnemies();
+    int countOfEnemies();
     
     void printPossibleMovements();
 };

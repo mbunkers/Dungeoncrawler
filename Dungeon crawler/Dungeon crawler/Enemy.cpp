@@ -11,4 +11,9 @@
 Enemy::Enemy(string name, int level, bool isBoss) : Character(name){
     mLevel = level;
     mIsBoss = isBoss;
+    
+    mHealthPoints = 2;
+    mCurrentHealth = mHealthPoints;
+    mAttackPoints = 10;
+    mDefencePoints = 10;
 }

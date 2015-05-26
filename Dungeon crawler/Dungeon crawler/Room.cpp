@@ -7,6 +7,7 @@
 //
 
 #include "Room.h"
+#include "Factory.h"
 
 Room::Room(string description){
     mDescription = description;
@@ -30,29 +31,44 @@ void Room::setVisited(){
 void Room::addEnemies(){
     // If enemies are present we shouldn't add more ;)
     if (mEnemies.size() == 0){
-        
+        shared_ptr<Factory> factory = Factory::Instance();
+        mEnemies.push_back(factory->generateEnemy());
     }
 }
 
 void Room::printPossibleMovements(){
-    if (mWest != nullptr){
-        cout << "[West] Go west\n";
+    if (mEnemies.size() > 0){
+        cout << "[Fight] Fight against " + to_string(mEnemies.size()) + " enemies\n";
+        cout << "[Flee] Flee from this place like a coward!\n";
     }
-    if (mNorth != nullptr){
-        cout << "[North] Go north\n";
+    else {
+        if (mWest != nullptr){
+            cout << "[West] Go west\n";
+        }
+        if (mNorth != nullptr){
+            cout << "[North] Go north\n";
+        }
+        if (mEast != nullptr){
+            cout << "[East] Go east\n";
+        }
+        if (mSouth != nullptr){
+            cout << "[South] Go south\n";
+        }
+        if (canGoUp){
+            cout << "[Up] Go up to the entrance\n";
+        }
+        if (canGoDown){
+            cout << "[Down] Go deeper to the monsters lair\n";
+        }
     }
-    if (mEast != nullptr){
-        cout << "[East] Go east\n";
-    }
-    if (mSouth != nullptr){
-        cout << "[South] Go south\n";
-    }
-    if (canGoUp){
-        cout << "[Up] Go up to the entrance\n";
-    }
-    if (canGoDown){
-        cout << "[Down] Go deeper to the monsters lair\n";
-    }
+}
+
+bool Room::hasEnemies(){
+    return mEnemies.size() > 0;
+}
+
+int Room::countOfEnemies(){
+    return (int)mEnemies.size();
 }
 
 bool Room::algorithmIsWall(){

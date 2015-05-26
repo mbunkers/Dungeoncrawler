@@ -94,7 +94,7 @@ void Dungeon::connectRoom(shared_ptr<Room> current){
 	}
 
 	size_t south = y + 1;
-	if (south>= 0 && south < mMap.size() && !isConnected){
+	if (south >= 0 && south < mMap.size() && !isConnected){
 		shared_ptr<Room> cNeighbour = mMap.at(south).at(x);
 		if (cNeighbour->algorithmIsAdded()){
 			current->mSouth = cNeighbour;
@@ -207,7 +207,7 @@ void Dungeon::printLegenda(){
 void Dungeon::printRoomRow(shared_ptr<Room> room, size_t index, size_t subIndex, shared_ptr<Hero> player){
     string output = "";
     
-    if (room == player->mCurrentRoom){
+    if (room == player->mRoomHistory.at(player->mRoomHistory.size() - 1)){
         output.append("P");
     }
     else {

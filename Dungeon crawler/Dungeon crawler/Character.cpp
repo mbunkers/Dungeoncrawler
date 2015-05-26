@@ -19,3 +19,11 @@ void Character::attack(shared_ptr<Character> otherCharacter){
 bool Character::couldDefend(shared_ptr<Character> otherCharacter){
     return false;
 }
+
+string Character::getName(){
+    return mName;
+}
+
+int Character::getHP(){
+    return mCurrentHealth;
+}

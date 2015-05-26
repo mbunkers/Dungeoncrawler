@@ -86,6 +86,31 @@ void Hero::printItems(){
 	}
 }
 
+string Hero::attackActions(){
+    string output = "";
+    output += "You are in a fight with:\n";
+    for (size_t i = 0; i < mRoomHistory.at(mRoomHistory.size() - 1)->mEnemies.size(); i++){
+        shared_ptr<Enemy> enemy = mRoomHistory.at(mRoomHistory.size() - 1)->mEnemies.at(i);
+        output += enemy->getName() + "\n";
+    }
+    
+    output += "\n";
+    
+    for (size_t i = 0; i < mRoomHistory.at(mRoomHistory.size() - 1)->mEnemies.size(); i++){
+        shared_ptr<Enemy> enemy = mRoomHistory.at(mRoomHistory.size() - 1)->mEnemies.at(i);
+        output += "[Fight " + to_string(i) + "] Fight against this enemy!\n";
+    }
+    
+    for (int i = 0; i < mItems.size(); i++){
+        shared_ptr<Item> item = mItems.at(i);
+        output += "[Use " + item->getName() + "] Use this item\n";
+    }
+    
+    output += "[Flee] Flee from this fight\n";
+    
+    return output;
+}
+
 bool Hero::toNextDungeon(){
     if (mCurrentDungeon < 9){
         mCurrentDungeon++;

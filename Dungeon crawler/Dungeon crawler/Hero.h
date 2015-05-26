@@ -14,7 +14,7 @@
 #include "Room.h"
 #include "Character.h"
 
-class Hero : Character{
+class Hero : public Character{
 private:
 	int mExperiencePoints, mPerception, mLevelingSpeed, mRequiredXp, mCurrentDungeon;
 	vector<shared_ptr<Item>> mItems;
@@ -23,14 +23,14 @@ private:
 
 public:
     Hero(string name);
-    shared_ptr<Room> mCurrentRoom = nullptr;
+    vector<shared_ptr<Room>> mRoomHistory = vector<shared_ptr<Room>>();
 	void addXp(int xp);
 	void printStats();
 	void addItem(shared_ptr<Item> item);
 	void printItems();
     bool toNextDungeon();
     bool toPreviousDungeon();
-	
+    string attackActions();
 };
 
 #endif /* defined(__Dungeon_crawler__Hero__) */

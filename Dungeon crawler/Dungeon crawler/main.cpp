@@ -57,15 +57,13 @@ int main(int argc, const char * argv[]) {
         
         while (game.isRunning()) {
             // Present options
-            game.possibleActions();
+            cout << game.possibleActions();
             cout << UserActions::prompt;
             string input = "";
             getline(cin, input);
+            string output = game.doAction(input);
             game.refreshScreen();
-            cout << "\n";
-            game.doAction(input);
-            cout << "\n";
-            game.refreshScreen();
+            cout << "\n" + output + "\n";;
         }
 
     } catch (...) {

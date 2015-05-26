@@ -17,8 +17,10 @@ protected:
     int mHealthPoints, mAttackPoints, mDefencePoints, mCurrentHealth, mLevel;
 public:
     Character(string name);
-    void attack(shared_ptr<Character> otherCharacter);
+    virtual void attack(shared_ptr<Character> otherCharacter);
     bool couldDefend(shared_ptr<Character> otherCharacter);
+    string getName();
+    int getHP();
 };
 
 #endif /* defined(__Dungeon_crawler__Character__) */
