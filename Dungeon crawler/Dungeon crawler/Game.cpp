@@ -91,10 +91,13 @@ void Game::actionInRoom(string action){
 void Game::refreshScreen(){
 	mInputHandler.handleInput("CLEAR");
 	mInputHandler.handleInput("TITLE");
-	if (mDungeon != nullptr){
+	if (mDungeon != nullptr){		
+		mInputHandler.setTextColor(mInputHandler.GREEN);
 		mDungeon->print();
 	}
 	if (mHero != nullptr){
+		mInputHandler.setTextColor(mInputHandler.MAGENTA);
 		mHero->printStats();
-	}	
+	}
+	mInputHandler.setTextColor(mInputHandler.WHITE);
 }
