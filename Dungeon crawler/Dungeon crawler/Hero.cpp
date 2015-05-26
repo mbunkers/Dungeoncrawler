@@ -27,7 +27,7 @@ shared_ptr<vector<string>> Hero::getStats(){
 	stats->push_back("Attack: " + to_string(mAttackPoints));
 	stats->push_back("Defence: " + to_string(mDefencePoints));
 	stats->push_back("Perception: " + to_string(mPerception));
-
+	return stats;
 }
 
 void Hero::levelUp(){
