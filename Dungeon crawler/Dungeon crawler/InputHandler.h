@@ -23,8 +23,14 @@ private:
 	unordered_map<string, commands> mEnums;
 
 
+
+
+	/* Standard error macro for reporting API errors */
+#define PERR(bSuccess, api){if(!(bSuccess)) printf("%s:Error %d from %s \ on line %d\n", __FILE__, GetLastError(), api, __LINE__);}
+	void clear();
+public:
 	enum Color{
-		
+
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
 		RED = 4,
 		BLUE = 1,
@@ -44,12 +50,7 @@ private:
 		CYAN = 36,
 #endif
 	};
-
-	/* Standard error macro for reporting API errors */
-#define PERR(bSuccess, api){if(!(bSuccess)) printf("%s:Error %d from %s \ on line %d\n", __FILE__, GetLastError(), api, __LINE__);}
 	void setTextColor(int colorCode);
-	void clear();
-public:
 	InputHandler();
 	virtual ~InputHandler();
 	int handleInput(string input);

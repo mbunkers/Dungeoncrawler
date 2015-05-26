@@ -1,3 +1,6 @@
+# Source control
+*.orig
+
 # Compiled Object files
 *.slo
 *.lo
@@ -55,3 +58,4 @@ Dungeon crawler/DungeonCrawler/DungeonCrawler/Debug/DungeonCrawler.tlog/link.wri
 Dungeon crawler/DungeonCrawler/DungeonCrawler/Debug/vc120.idb
 Dungeon crawler/DungeonCrawler/ipch/dungeoncrawler-930524e9/dungeoncrawler-180cc70c.ipch
 Dungeon crawler/DungeonCrawler/DungeonCrawler.opensdf
+Dungeon crawler/DungeonCrawler/DungeonCrawler/Debug/DungeonCrawler.tlog/unsuccessfulbuild

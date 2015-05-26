@@ -12,16 +12,24 @@
 #include "stdafx.h"
 #include "Hero.h"
 #include "Dungeon.h"
+#include "InputHandler.h"
 
 class Game {
+enum GameStates{
+		MAIN = 0,
+		ROOM = 1,
+		ATTACK = 2
+	};
+private:
+	int mRoomSize;
+	shared_ptr<Hero> mHero;
+	bool mIsRunning;
+	GameStates mGameState = MAIN;
+	shared_ptr<Dungeon> mDungeon;
+	InputHandler mInputHandler;
 public:
-    enum GameStates{
-        MAIN = 0,
-        ROOM = 1,
-        ATTACK = 2
-    };
-
     Game();
+	void refreshScreen();
     void setupHero(string name);
     void setRoomSize(int size);
     bool isRunning();
@@ -35,14 +43,9 @@ public:
 
     void actionInMain(string action);
     void actionInAttack(string action);
-    void actionInRoom(string action);
+    bool canDoActionInRoom(string action);
 
-private:
-    int mRoomSize;
-    shared_ptr<Hero> mHero;
-    bool mIsRunning;
-    GameStates mGameState = MAIN;
-    shared_ptr<Dungeon> mDungeon;
+
 };
 
 #endif /* defined(__Dungeon_crawler__Game__) */

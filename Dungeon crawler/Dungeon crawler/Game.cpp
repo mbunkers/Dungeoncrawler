@@ -10,6 +10,9 @@
 
 Game::Game(){
     mIsRunning = false;
+	mDungeon = nullptr;
+	mHero = nullptr;
+	mInputHandler = InputHandler();
 }
 
 void Game::setup(){
@@ -33,8 +36,7 @@ bool Game::isRunning(){
     return mIsRunning;
 }
 
-string Game::possibleActions(){
-    mDungeon->print(mHero);
+string Game::possibleActions(){    
     switch (mGameState) {
         case MAIN:
             return actionsForMain();
@@ -67,7 +69,9 @@ void Game::doAction(string action){
         case ATTACK:
             actionInAttack(action);
         case ROOM:
-            actionInRoom(action);
+            if (!canDoActionInRoom(action)){
+                cout << "You can't do this!\n";
+            }
         default:
             break;
     }
@@ -84,11 +88,12 @@ void Game::actionInAttack(string action){
 }
 
 // Find suitable action when in a room
-void Game::actionInRoom(string action){
+bool Game::canDoActionInRoom(string action){
     if (action == "West"){
         if (mHero->mCurrentRoom->mWest != nullptr){
             mHero->mCurrentRoom = mHero->mCurrentRoom->mWest;
             mHero->mCurrentRoom->setVisited();
+            return true;
         }
     }
     else {
@@ -96,6 +101,7 @@ void Game::actionInRoom(string action){
             if (mHero->mCurrentRoom->mNorth != nullptr){
                 mHero->mCurrentRoom = mHero->mCurrentRoom->mNorth;
                 mHero->mCurrentRoom->setVisited();
+                return true;
             }
         }
         else {
@@ -103,6 +109,7 @@ void Game::actionInRoom(string action){
                 if (mHero->mCurrentRoom->mEast != nullptr){
                     mHero->mCurrentRoom = mHero->mCurrentRoom->mEast;
                     mHero->mCurrentRoom->setVisited();
+                    return true;
                 }
             }
             else {
@@ -110,19 +117,35 @@ void Game::actionInRoom(string action){
                     if (mHero->mCurrentRoom->mSouth != nullptr){
                         mHero->mCurrentRoom = mHero->mCurrentRoom->mSouth;
                         mHero->mCurrentRoom->setVisited();
+                        return true;
                     }
                 }
                 else {
                     if (action == "Up"){
-                        cout << "Not yet supported";
+                        cout << "Not yet supported\n";
                     }
                     else {
                         if (action == "Down"){
-                            cout << "Not yet supported";
+                            cout << "Not yet supported\n";
                         }
                     }
                 }
             }
         }
     }
+    return false;
+}
+
+void Game::refreshScreen(){
+	mInputHandler.handleInput("CLEAR");
+	mInputHandler.handleInput("TITLE");
+	if (mDungeon != nullptr){		
+		mInputHandler.setTextColor(mInputHandler.GREEN);
+		mDungeon->print(mHero);
+	}
+	if (mHero != nullptr){
+		mInputHandler.setTextColor(mInputHandler.MAGENTA);
+		mHero->printStats();
+	}
+	mInputHandler.setTextColor(mInputHandler.WHITE);
 }

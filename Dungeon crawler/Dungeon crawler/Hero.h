@@ -16,11 +16,17 @@
 class Hero{
 private:
     string mName;
-    int mLevel, mHealtPoints, mExperiencePoints, mAttackPoints, mDefencePoints, mMindfullness = 0;
-    vector<Item> mItems;
+	int mLevel, mHealthPoints, mExperiencePoints, mAttackPoints, mDefencePoints, mPerception, mLevelingSpeed, mRequiredXp, mCurrentHealth;
+	vector<shared_ptr<Item>> mItems;
+	void levelUp();
+	void setRequiredXp();
+
 public:
     Hero(string name);
     shared_ptr<Room> mCurrentRoom = nullptr;
+	void addXp(int xp);
+	void printStats();
+	
 };
 
 #endif /* defined(__Dungeon_crawler__Hero__) */
