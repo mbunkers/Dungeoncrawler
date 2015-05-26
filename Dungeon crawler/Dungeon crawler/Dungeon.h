@@ -18,12 +18,18 @@ using namespace std;
 class Dungeon{
 private:
     vector<vector<shared_ptr<Room>>> mMap;
+	vector<shared_ptr<Room>> walls;
+	shared_ptr<Room> startRoom;
     void reset();
     
     void printRoomRow(shared_ptr<Room> room, size_t index, size_t subIndex, shared_ptr<Hero> player);
     void printPath(shared_ptr<Room> room, size_t index);
     void printMap(shared_ptr<Hero> player);
     void printLegenda();
+
+	shared_ptr<Room> getRandomRoom(int size);
+	void addNeighbours(shared_ptr<Room> currentRoom);
+	void connectRoom(shared_ptr<Room> current);
     
     
 public:
