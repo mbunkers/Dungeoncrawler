@@ -80,26 +80,30 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Dungeon crawler\ASCIIgen.h" />
+    <ClInclude Include="..\..\Dungeon crawler\Character.h" />
     <ClInclude Include="..\..\Dungeon crawler\Dungeon.h" />
+    <ClInclude Include="..\..\Dungeon crawler\Enemy.h" />
+    <ClInclude Include="..\..\Dungeon crawler\Factory.h" />
     <ClInclude Include="..\..\Dungeon crawler\Game.h" />
     <ClInclude Include="..\..\Dungeon crawler\Hero.h" />
     <ClInclude Include="..\..\Dungeon crawler\InputHandler.h" />
     <ClInclude Include="..\..\Dungeon crawler\Item.h" />
     <ClInclude Include="..\..\Dungeon crawler\Room.h" />
-    <ClInclude Include="..\..\Dungeon crawler\RoomFactory.h" />
     <ClInclude Include="..\..\Dungeon crawler\stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Dungeon crawler\ASCIIgen.cpp" />
+    <ClCompile Include="..\..\Dungeon crawler\Character.cpp" />
     <ClCompile Include="..\..\Dungeon crawler\Dungeon.cpp" />
+    <ClCompile Include="..\..\Dungeon crawler\Enemy.cpp" />
+    <ClCompile Include="..\..\Dungeon crawler\Factory.cpp" />
     <ClCompile Include="..\..\Dungeon crawler\Game.cpp" />
     <ClCompile Include="..\..\Dungeon crawler\Hero.cpp" />
     <ClCompile Include="..\..\Dungeon crawler\InputHandler.cpp" />
     <ClCompile Include="..\..\Dungeon crawler\Item.cpp" />
     <ClCompile Include="..\..\Dungeon crawler\main.cpp" />
     <ClCompile Include="..\..\Dungeon crawler\Room.cpp" />
-    <ClCompile Include="..\..\Dungeon crawler\RoomFactory.cpp" />
     <ClCompile Include="..\..\Dungeon crawler\stdafx.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
