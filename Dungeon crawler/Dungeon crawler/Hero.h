@@ -28,7 +28,8 @@ public:
     Hero(string name);
 	void addXp(int xp);
 	void printStats();
-	
+	void addItem(shared_ptr<Item> item);
+	void printItems();
 };
 
 #endif /* defined(__Dungeon_crawler__Hero__) */

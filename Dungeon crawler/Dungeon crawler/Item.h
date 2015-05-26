@@ -10,11 +10,17 @@
 #define __Dungeon_crawler__Item__
 
 #include <stdio.h>
+#include "stdafx.h"
 
 class Item{
-private:
 public:
-    Item();
+	Item(string name, int value);
+	int getValue();
+	string getName();
+
+private:
+	string mItemName;
+	int mItemValue;
 };
 
 #endif /* defined(__Dungeon_crawler__Item__) */
