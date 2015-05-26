@@ -13,6 +13,8 @@
 		0C41EAAD1AE6DFE200FCA037 /* RoomFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C41EAAB1AE6DFE200FCA037 /* RoomFactory.cpp */; };
 		0C41EAAE1AE6E2C700FCA037 /* rooms.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0C41EAAA1AE6DB6300FCA037 /* rooms.txt */; };
 		0C41EAB11AE6E8F800FCA037 /* Room.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C41EAAF1AE6E8F800FCA037 /* Room.cpp */; };
+		0CAE02CC1B121BCE00802649 /* ASCIIgen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0CAE02C81B121BCE00802649 /* ASCIIgen.cpp */; };
+		0CAE02CD1B121BCE00802649 /* InputHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0CAE02CA1B121BCE00802649 /* InputHandler.cpp */; };
 		0CE03EEB1A9A1F15007BBAD5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0CE03EEA1A9A1F15007BBAD5 /* main.cpp */; };
 		0CE03EF21A9A1FC9007BBAD5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE03EF11A9A1FC9007BBAD5 /* CoreFoundation.framework */; };
 		0CE03EF51A9A2481007BBAD5 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0CE03EF31A9A2481007BBAD5 /* Game.cpp */; };
@@ -44,6 +46,10 @@
 		0C41EAAC1AE6DFE200FCA037 /* RoomFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomFactory.h; sourceTree = "<group>"; };
 		0C41EAAF1AE6E8F800FCA037 /* Room.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Room.cpp; sourceTree = "<group>"; };
 		0C41EAB01AE6E8F800FCA037 /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
+		0CAE02C81B121BCE00802649 /* ASCIIgen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ASCIIgen.cpp; sourceTree = "<group>"; };
+		0CAE02C91B121BCE00802649 /* ASCIIgen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCIIgen.h; sourceTree = "<group>"; };
+		0CAE02CA1B121BCE00802649 /* InputHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputHandler.cpp; sourceTree = "<group>"; };
+		0CAE02CB1B121BCE00802649 /* InputHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputHandler.h; sourceTree = "<group>"; };
 		0CE03EE71A9A1F15007BBAD5 /* Dungeon crawler */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Dungeon crawler"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CE03EEA1A9A1F15007BBAD5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		0CE03EF11A9A1FC9007BBAD5 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -86,6 +92,10 @@
 		0CAE02C61B11CAD700802649 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				0CAE02C81B121BCE00802649 /* ASCIIgen.cpp */,
+				0CAE02C91B121BCE00802649 /* ASCIIgen.h */,
+				0CAE02CA1B121BCE00802649 /* InputHandler.cpp */,
+				0CAE02CB1B121BCE00802649 /* InputHandler.h */,
 				0CE03EEA1A9A1F15007BBAD5 /* main.cpp */,
 				0CE03EF31A9A2481007BBAD5 /* Game.cpp */,
 				0CE03EF41A9A2481007BBAD5 /* Game.h */,
@@ -161,7 +171,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = "Marc Bunkers";
+				ORGANIZATIONNAME = "Marc Bunkers & Leon van Tuijl";
 				TargetAttributes = {
 					0CE03EE61A9A1F15007BBAD5 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -190,6 +200,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CAE02CC1B121BCE00802649 /* ASCIIgen.cpp in Sources */,
+				0CAE02CD1B121BCE00802649 /* InputHandler.cpp in Sources */,
 				0C41EAB11AE6E8F800FCA037 /* Room.cpp in Sources */,
 				0C41EAAD1AE6DFE200FCA037 /* RoomFactory.cpp in Sources */,
 				0C1557B01AE8297100BF9AE6 /* Dungeon.cpp in Sources */,

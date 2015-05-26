@@ -1,4 +1,14 @@
-#pragma once
+//
+//  InputHandler.h
+//  Dungeon crawler
+//
+//  Created by Leon van Tuijl on 22/02/15.
+//  Copyright (c) 2015 Marc Bunkers & Leon van Tuijl. All rights reserved.
+//
+
+#ifndef __InputHandler__
+#define __InputHandler__
+
 #include "stdafx.h"
 #include <unordered_map>
 class InputHandler
@@ -45,3 +55,4 @@ public:
 	int handleInput(string input);
 };
 
+#endif

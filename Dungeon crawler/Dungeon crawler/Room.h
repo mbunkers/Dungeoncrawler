@@ -3,15 +3,13 @@
 //  Dungeon crawler
 //
 //  Created by Marc Bunkers on 21/04/15.
-//  Copyright (c) 2015 Marc Bunkers. All rights reserved.
+//  Copyright (c) 2015 Marc Bunkers & Leon van Tuijl. All rights reserved.
 //
 
 #ifndef __Dungeon_crawler__Room__
 #define __Dungeon_crawler__Room__
 
-#include <stdio.h>
-#include <string>
-using namespace std;
+#include "stdafx.h"
 
 class Room{
 private:

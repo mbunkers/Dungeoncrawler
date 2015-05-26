@@ -3,17 +3,15 @@
 //  Dungeon crawler
 //
 //  Created by Marc Bunkers on 22/02/15.
-//  Copyright (c) 2015 Marc Bunkers. All rights reserved.
+//  Copyright (c) 2015 Marc Bunkers & Leon van Tuijl. All rights reserved.
 //
 
 #ifndef __Dungeon_crawler__Game__
 #define __Dungeon_crawler__Game__
 
-#include <stdio.h>
+#include "stdafx.h"
 #include "Hero.h"
-#include <memory>
 #include "Dungeon.h"
-using namespace std;
 
 class Game {
 public:
