@@ -22,6 +22,14 @@ bool Room::hasBeenVisited(){
 
 void Room::setVisited(){
     mHasBeenVisited = true;
+    addEnemies();
+}
+
+void Room::addEnemies(){
+    // If enemies are present we shouldn't add more ;)
+    if (mEnemies.size() == 0){
+        
+    }
 }
 
 void Room::printPossibleMovements(){

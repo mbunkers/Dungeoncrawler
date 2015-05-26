@@ -10,9 +10,12 @@
 		0C1557B01AE8297100BF9AE6 /* Dungeon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C1557AE1AE8297100BF9AE6 /* Dungeon.cpp */; };
 		0C41EAA61AE6D30C00FCA037 /* Hero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C41EAA41AE6D30C00FCA037 /* Hero.cpp */; };
 		0C41EAA91AE6D3EE00FCA037 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C41EAA71AE6D3EE00FCA037 /* Item.cpp */; };
-		0C41EAAD1AE6DFE200FCA037 /* RoomFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C41EAAB1AE6DFE200FCA037 /* RoomFactory.cpp */; };
+		0C41EAAD1AE6DFE200FCA037 /* Factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C41EAAB1AE6DFE200FCA037 /* Factory.cpp */; };
 		0C41EAAE1AE6E2C700FCA037 /* rooms.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0C41EAAA1AE6DB6300FCA037 /* rooms.txt */; };
 		0C41EAB11AE6E8F800FCA037 /* Room.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C41EAAF1AE6E8F800FCA037 /* Room.cpp */; };
+		0C5F3BAA1B14C29300F542B5 /* enemies.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0C5F3BA91B14C28D00F542B5 /* enemies.txt */; };
+		0C7E09801B14B38B002480FB /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C7E097E1B14B38B002480FB /* Enemy.cpp */; };
+		0C7E09831B14B4CC002480FB /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C7E09811B14B4CC002480FB /* Character.cpp */; };
 		0CAE02CC1B121BCE00802649 /* ASCIIgen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0CAE02C81B121BCE00802649 /* ASCIIgen.cpp */; };
 		0CAE02CD1B121BCE00802649 /* InputHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0CAE02CA1B121BCE00802649 /* InputHandler.cpp */; };
 		0CE03EEB1A9A1F15007BBAD5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0CE03EEA1A9A1F15007BBAD5 /* main.cpp */; };
@@ -27,6 +30,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				0C5F3BAA1B14C29300F542B5 /* enemies.txt in CopyFiles */,
 				0C41EAAE1AE6E2C700FCA037 /* rooms.txt in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -42,10 +46,15 @@
 		0C41EAA71AE6D3EE00FCA037 /* Item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Item.cpp; sourceTree = "<group>"; };
 		0C41EAA81AE6D3EE00FCA037 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		0C41EAAA1AE6DB6300FCA037 /* rooms.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rooms.txt; sourceTree = "<group>"; };
-		0C41EAAB1AE6DFE200FCA037 /* RoomFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RoomFactory.cpp; sourceTree = "<group>"; };
-		0C41EAAC1AE6DFE200FCA037 /* RoomFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomFactory.h; sourceTree = "<group>"; };
+		0C41EAAB1AE6DFE200FCA037 /* Factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Factory.cpp; sourceTree = "<group>"; };
+		0C41EAAC1AE6DFE200FCA037 /* Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Factory.h; sourceTree = "<group>"; };
 		0C41EAAF1AE6E8F800FCA037 /* Room.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Room.cpp; sourceTree = "<group>"; };
 		0C41EAB01AE6E8F800FCA037 /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
+		0C5F3BA91B14C28D00F542B5 /* enemies.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = enemies.txt; sourceTree = "<group>"; };
+		0C7E097E1B14B38B002480FB /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
+		0C7E097F1B14B38B002480FB /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
+		0C7E09811B14B4CC002480FB /* Character.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Character.cpp; sourceTree = "<group>"; };
+		0C7E09821B14B4CC002480FB /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
 		0CAE02C81B121BCE00802649 /* ASCIIgen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ASCIIgen.cpp; sourceTree = "<group>"; };
 		0CAE02C91B121BCE00802649 /* ASCIIgen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCIIgen.h; sourceTree = "<group>"; };
 		0CAE02CA1B121BCE00802649 /* InputHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputHandler.cpp; sourceTree = "<group>"; };
@@ -69,6 +78,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C5F3BAB1B14C29B00F542B5 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				0C5F3BA91B14C28D00F542B5 /* enemies.txt */,
+				0C41EAAA1AE6DB6300FCA037 /* rooms.txt */,
+				0C41EAAB1AE6DFE200FCA037 /* Factory.cpp */,
+				0C41EAAC1AE6DFE200FCA037 /* Factory.h */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
 		0CAE02C41B11CAC100802649 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,9 +100,6 @@
 		0CAE02C51B11CAD200802649 /* Rooms */ = {
 			isa = PBXGroup;
 			children = (
-				0C41EAAA1AE6DB6300FCA037 /* rooms.txt */,
-				0C41EAAB1AE6DFE200FCA037 /* RoomFactory.cpp */,
-				0C41EAAC1AE6DFE200FCA037 /* RoomFactory.h */,
 				0C41EAAF1AE6E8F800FCA037 /* Room.cpp */,
 				0C41EAB01AE6E8F800FCA037 /* Room.h */,
 			);
@@ -112,6 +129,10 @@
 				0C41EAA51AE6D30C00FCA037 /* Hero.h */,
 				0C41EAA71AE6D3EE00FCA037 /* Item.cpp */,
 				0C41EAA81AE6D3EE00FCA037 /* Item.h */,
+				0C7E097E1B14B38B002480FB /* Enemy.cpp */,
+				0C7E097F1B14B38B002480FB /* Enemy.h */,
+				0C7E09811B14B4CC002480FB /* Character.cpp */,
+				0C7E09821B14B4CC002480FB /* Character.h */,
 			);
 			name = Characters;
 			sourceTree = "<group>";
@@ -136,6 +157,7 @@
 		0CE03EE91A9A1F15007BBAD5 /* Dungeon crawler */ = {
 			isa = PBXGroup;
 			children = (
+				0C5F3BAB1B14C29B00F542B5 /* Config */,
 				0CAE02C71B11CAF000802649 /* Characters */,
 				0CAE02C61B11CAD700802649 /* Main */,
 				0CAE02C51B11CAD200802649 /* Rooms */,
@@ -202,12 +224,14 @@
 			files = (
 				0CAE02CC1B121BCE00802649 /* ASCIIgen.cpp in Sources */,
 				0CAE02CD1B121BCE00802649 /* InputHandler.cpp in Sources */,
+				0C7E09801B14B38B002480FB /* Enemy.cpp in Sources */,
 				0C41EAB11AE6E8F800FCA037 /* Room.cpp in Sources */,
-				0C41EAAD1AE6DFE200FCA037 /* RoomFactory.cpp in Sources */,
+				0C41EAAD1AE6DFE200FCA037 /* Factory.cpp in Sources */,
 				0C1557B01AE8297100BF9AE6 /* Dungeon.cpp in Sources */,
 				0C41EAA91AE6D3EE00FCA037 /* Item.cpp in Sources */,
 				0C41EAA61AE6D30C00FCA037 /* Hero.cpp in Sources */,
 				0CE03EEB1A9A1F15007BBAD5 /* main.cpp in Sources */,
+				0C7E09831B14B4CC002480FB /* Character.cpp in Sources */,
 				0CE03EF51A9A2481007BBAD5 /* Game.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

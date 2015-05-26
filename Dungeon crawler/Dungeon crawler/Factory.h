@@ -11,22 +11,22 @@
 
 #include "stdafx.h"
 #include "Room.h"
+#include "Enemy.h"
 using namespace std;
 
-class RoomFactory{
+class Factory{
 public:
-    RoomFactory();
+    static shared_ptr<Factory> Instance();
+    Factory();
     shared_ptr<Room> generateRoom();
+    shared_ptr<Enemy> generateEnemy();
 private:
-    vector<string> mRoomSize = vector<string>();
-    vector<string> mRoomTidyStatus = vector<string>();
-    vector<string> mRoomFloorType = vector<string>();
-    vector<string> mRoomFurniture = vector<string>();
-    vector<string> mRoomLightning = vector<string>();
-    vector<string> mRoomCorner = vector<string>();
-
-    void loadDescriptions();
+    vector<vector<vector<string>>> mStrings = vector<vector<vector<string>>>();
+    void loadRooms();
+    void loadEnemies();
+    void loadDescriptions(int index, string path);
     vector<string> splittedString(const string line, char delim);
+    string generateEnemyDescription();
     string generateRoomDescription();
     string stringFromVector(vector<string> data);
 };

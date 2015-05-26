@@ -9,6 +9,17 @@
 #ifndef __Dungeon_crawler__Enemy__
 #define __Dungeon_crawler__Enemy__
 
-#include <stdio.h>
+#include "stdafx.h"
+#include "Character.h"
+
+class Enemy: Character{
+private:
+    bool mIsBoss = false;
+    
+public:
+    Enemy(string name, int level, bool isBoss);
+    void attack();
+    void defend();
+};
 
 #endif /* defined(__Dungeon_crawler__Enemy__) */

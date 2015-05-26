@@ -7,3 +7,8 @@
 //
 
 #include "Enemy.h"
+
+Enemy::Enemy(string name, int level, bool isBoss) : Character(name){
+    mLevel = level;
+    mIsBoss = isBoss;
+}

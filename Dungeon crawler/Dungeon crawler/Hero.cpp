@@ -8,7 +8,7 @@
 
 #include "Hero.h"
 
-Hero::Hero(string name){
+Hero::Hero(string name) : Character(name){
     mName = name;
 	mLevel = 1;
     mHealthPoints = 100;
@@ -34,6 +34,7 @@ void Hero::printStats(){
 	cout << ("<-"+ mName + "->\n");
     cout << ("Dungeon: " + to_string(mCurrentDungeon) + "\n");
 	cout << ("Level: " + to_string(mLevel) + "\n");
+
 	if (mLevel != 10){
 		cout << ("Experience Points: " + to_string(mExperiencePoints) + "/" + to_string(mRequiredXp) + "\n");
 	}

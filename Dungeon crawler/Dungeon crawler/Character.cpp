@@ -7,3 +7,15 @@
 //
 
 #include "Character.h"
+
+Character::Character(string name){
+    mName = name;
+}
+
+void Character::attack(shared_ptr<Character> otherCharacter){
+    otherCharacter->mCurrentHealth--;
+}
+
+bool Character::couldDefend(shared_ptr<Character> otherCharacter){
+    return false;
+}

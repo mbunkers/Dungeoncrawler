@@ -12,11 +12,11 @@
 #include "stdafx.h"
 #include "Item.h"
 #include "Room.h"
+#include "Character.h"
 
-class Hero{
+class Hero : Character{
 private:
-    string mName;
-	int mLevel, mHealthPoints, mExperiencePoints, mAttackPoints, mDefencePoints, mPerception, mLevelingSpeed, mRequiredXp, mCurrentHealth, mCurrentDungeon;
+	int mExperiencePoints, mPerception, mLevelingSpeed, mRequiredXp, mCurrentDungeon;
 	vector<shared_ptr<Item>> mItems;
 	void levelUp();
 	void setRequiredXp();

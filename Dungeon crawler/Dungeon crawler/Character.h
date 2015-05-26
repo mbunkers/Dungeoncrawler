@@ -9,6 +9,16 @@
 #ifndef __Dungeon_crawler__Character__
 #define __Dungeon_crawler__Character__
 
-#include <stdio.h>
+#include "stdafx.h"
+
+class Character{
+protected:
+    string mName;
+    int mHealthPoints, mAttackPoints, mDefencePoints, mCurrentHealth, mLevel;
+public:
+    Character(string name);
+    void attack(shared_ptr<Character> otherCharacter);
+    bool couldDefend(shared_ptr<Character> otherCharacter);
+};
 
 #endif /* defined(__Dungeon_crawler__Character__) */

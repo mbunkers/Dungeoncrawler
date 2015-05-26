@@ -10,11 +10,13 @@
 #define __Dungeon_crawler__Room__
 
 #include "stdafx.h"
+#include "Enemy.h"
 
 class Room{
 private:
     string mDescription;
     bool mHasBeenVisited = false;
+    vector<shared_ptr<Enemy>> mEnemies = vector<shared_ptr<Enemy>>();
     
 public:
     Room(string description);
@@ -29,6 +31,7 @@ public:
     
     bool hasBeenVisited();
     void setVisited();
+    void addEnemies();
     
     void printPossibleMovements();
 };
