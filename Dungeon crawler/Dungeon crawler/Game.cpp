@@ -66,6 +66,7 @@ string Game::doAction(string action){
     switch (mGameState) {
         case MAIN:
             actionInMain(action);
+            return "";
         case ATTACK:
             return actionInAttack(action) + "\n";
         case ROOM:
@@ -102,7 +103,11 @@ string Game::actionInAttack(string action){
                     }
                     if (enemy->getHP() == 0){
                         room->mEnemies.erase(room->mEnemies.begin() + index);
-                        return "You've defeaten this enemy!\n";
+                        if (room->mEnemies.size() == 0){
+                            mGameState = GameStates::ROOM;
+                            return "You've defeaten all enemies here!";
+                        }
+                        return "You've defeaten this enemy!";
                     }
                     
                     for (size_t i = 0; i < room->mEnemies.size(); i++){
@@ -112,6 +117,7 @@ string Game::actionInAttack(string action){
                         }
                         
                         if (mHero->getHP() == 0){
+                            mGameState = GameStates::MAIN;
                             return "You've been defeaten!\n";
                         }
                     }
@@ -239,3 +245,14 @@ void Game::resumeSave(string path){
 void Game::saveGame(){
 	mHero->saveGame(mRoomSize ,"save.txt");
 }
+
+vector<string> Game::splittedString(const string line, char delim){
+    vector<string> elems;
+    stringstream ss(line);
+    string item;
+    while (getline(ss, item, delim)) {
+        elems.push_back(item);
+    }
+    return elems;
+}
+
