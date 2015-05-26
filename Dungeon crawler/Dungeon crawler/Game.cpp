@@ -125,6 +125,7 @@ bool Game::canDoActionInRoom(string action){
                         if (mHero->mCurrentRoom->canGoUp){
                             if (mHero->toPreviousDungeon()){
                                 setup();
+								saveGame();
                             }
                         }
                     }
@@ -133,6 +134,7 @@ bool Game::canDoActionInRoom(string action){
                             if (mHero->mCurrentRoom->canGoDown){
                                 if (mHero->toNextDungeon()){
                                     setup();
+									saveGame();
                                 }
                             }
                         }
@@ -158,4 +160,15 @@ void Game::refreshScreen(){
 		mHero->printItems();
 	}
 	mInputHandler.setTextColor(mInputHandler.WHITE);
+}
+
+void Game::resumeSave(string path){
+	mHero = make_shared<Hero>("");
+	setRoomSize(mHero->loadSave(path));
+	mIsRunning = true;
+	mGameState = ROOM;
+}
+
+void Game::saveGame(){
+	mHero->saveGame(mRoomSize ,"save.txt");
 }

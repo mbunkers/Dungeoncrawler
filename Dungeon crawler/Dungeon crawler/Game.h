@@ -31,6 +31,8 @@ public:
     Game();
 	void refreshScreen();
     void setupHero(string name);
+	void resumeSave(string path);
+	void saveGame();
     void setRoomSize(int size);
     bool isRunning();
     void setup();

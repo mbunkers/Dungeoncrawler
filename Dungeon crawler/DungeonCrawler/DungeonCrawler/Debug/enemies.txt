@@ -1,0 +1,4 @@
+short,tall,fat
+nasty,filthy
+pirate,spider,terminator
+happy,angry,revengeful

@@ -57,16 +57,12 @@ void Factory::loadDescriptions(int index, string path){
     string line;
     ifstream file(path);
     if (file.is_open()){
-        int counter = 0;
         while (file.good()){
             getline(file, line);
             if (line == ""){
                 break;
             }
-            
             mStrings.at(index).push_back(splittedString(line, ','));
-            
-            counter++;
         }
         file.close();
     }

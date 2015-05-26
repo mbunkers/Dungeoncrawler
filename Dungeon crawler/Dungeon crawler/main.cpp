@@ -36,23 +36,33 @@ int main(int argc, const char * argv[]) {
 #endif
 
     try {
-		
-		
         Game game = Game();
+		string savePath = "save.txt";
+		string input = "";
+		ifstream file(savePath);
+		if (file.is_open()){
+			cout << "Do you wish to continue your previous adventure? Y to continue \n";
+			cout << UserActions::prompt;
+			getline(cin, input);
+		}
 
-        cout << "Kind warrior, what is your name?\n";
-        cout << UserActions::prompt;
+		if (input.compare("Y") == 0){
+			game.resumeSave(savePath);
+		}
+		else{
+			cout << "NEW GAME \n";
+			cout << "Kind warrior, what is your name?\n";
+			cout << UserActions::prompt;
 
-        // Present options
-        string input = "";
-        getline(cin, input);
-		game.setupHero(input);
-
-        cout << "Welcome " << input << "!\nThere is a treasure deep down and you want it!\n";
-        cout << "What size should the dungeons be?\n";
-        cout << UserActions::prompt;
-        getline(cin, input);
-        game.setRoomSize(atoi(input.c_str()));
+			// Present options
+			getline(cin, input);
+			game.setupHero(input);
+			cout << "Welcome " << input << "!\nThere is a treasure deep down and you want it!\n";
+			cout << "What size should the dungeons be?\n";
+			cout << UserActions::prompt;
+			getline(cin, input);
+			game.setRoomSize(atoi(input.c_str()));
+		}
         game.refreshScreen();
         
         while (game.isRunning()) {

@@ -30,6 +30,8 @@ public:
 	void printItems();
     bool toNextDungeon();
     bool toPreviousDungeon();
+	int loadSave(string path);
+	void saveGame(int roomsize, string path);
 	
 };
 
