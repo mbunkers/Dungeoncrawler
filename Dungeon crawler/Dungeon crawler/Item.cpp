@@ -8,6 +8,16 @@
 
 #include "Item.h"
 
-Item::Item(){
+Item::Item(string name, int value)
+: mItemValue(value), mItemName(name)
+{
 
+}
+
+int Item::getValue(){
+	return mItemValue;
+}
+
+string Item::getName(){
+	return mItemName;
 }

@@ -154,6 +154,8 @@ void Game::refreshScreen(){
 	if (mHero != nullptr){
 		mInputHandler.setTextColor(mInputHandler.MAGENTA);
 		mHero->printStats();
+		mInputHandler.setTextColor(mInputHandler.CYAN);
+		mHero->printItems();
 	}
 	mInputHandler.setTextColor(mInputHandler.WHITE);
 }

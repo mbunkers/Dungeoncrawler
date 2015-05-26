@@ -20,13 +20,26 @@ Hero::Hero(string name){
 	mExperiencePoints = 0;
     mCurrentDungeon = 0;
 	setRequiredXp();
+
+	//test code
+	mItems = vector<shared_ptr<Item>>();
+	shared_ptr<Item> item = make_shared<Item>("An Item", 666);
+	addItem(item);
+	addItem(item);
+	addItem(item);
+	addItem(item);
 }
 
 void Hero::printStats(){
 	cout << ("<-"+ mName + "->\n");
     cout << ("Dungeon: " + to_string(mCurrentDungeon) + "\n");
 	cout << ("Level: " + to_string(mLevel) + "\n");
-	cout << ("Experience Points: " + to_string(mExperiencePoints) + "/" + to_string(mRequiredXp) + "\n");
+	if (mLevel != 10){
+		cout << ("Experience Points: " + to_string(mExperiencePoints) + "/" + to_string(mRequiredXp) + "\n");
+	}
+	else {
+		cout << ("Experience Points: MAX \n");
+	}
 	cout << ("HP: " + to_string(mCurrentHealth) + "/" + to_string(mHealthPoints) + "\n");
 	cout << ("Attack: " + to_string(mAttackPoints) + "\n");
 	cout << ("Defence: " + to_string(mDefencePoints) + "\n");
@@ -35,19 +48,41 @@ void Hero::printStats(){
 
 void Hero::levelUp(){
 	mLevel++, mHealthPoints++, mAttackPoints++, mDefencePoints++, mPerception++;
-	setRequiredXp();
+	if (mLevel != 10){
+		setRequiredXp();
+	}
+	else{
+		mRequiredXp = 666;
+		mExperiencePoints = 666;
+	}
+	
 }
 
 void Hero::addXp(int xp){
-	mExperiencePoints += xp;
-	if (mExperiencePoints >= mRequiredXp){
-		mExperiencePoints -= mRequiredXp;
-		levelUp();
+	if (mLevel != 10){
+		mExperiencePoints += xp;
+		if (mExperiencePoints >= mRequiredXp){
+			mExperiencePoints -= mRequiredXp;
+			levelUp();
+		}
 	}
 }
 
 void Hero::setRequiredXp(){
 	mRequiredXp = mLevel*mLevelingSpeed;
+}
+
+void Hero::addItem(shared_ptr<Item> item){
+	mItems.push_back(item);
+}
+
+void Hero::printItems(){
+	int i = 0;
+	cout << "\n" << "<-INVENTORY->\n";
+	for (shared_ptr<Item> item : mItems){		
+		cout << i << ": " << item->getName() << " %" << to_string(item->getValue()) << "\n";
+		i++;
+	}
 }
 
 bool Hero::toNextDungeon(){

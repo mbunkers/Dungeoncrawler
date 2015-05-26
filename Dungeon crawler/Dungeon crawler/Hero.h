@@ -26,6 +26,8 @@ public:
     shared_ptr<Room> mCurrentRoom = nullptr;
 	void addXp(int xp);
 	void printStats();
+	void addItem(shared_ptr<Item> item);
+	void printItems();
     bool toNextDungeon();
     bool toPreviousDungeon();
 	
