@@ -31,6 +31,9 @@ public:
     bool toNextDungeon();
     bool toPreviousDungeon();
     string attackActions();
+	int loadSave(string path);
+	void saveGame(int roomsize, string path);
+	
 };
 
 #endif /* defined(__Dungeon_crawler__Hero__) */

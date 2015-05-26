@@ -188,6 +188,7 @@ bool Game::canDoActionInRoom(string action){
                             if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->canGoUp){
                                 if (mHero->toPreviousDungeon()){
                                     setup();
+									saveGame();
                                 }
                                 return true;
                             }
@@ -197,6 +198,7 @@ bool Game::canDoActionInRoom(string action){
                                 if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->canGoDown){
                                     if (mHero->toNextDungeon()){
                                         setup();
+                                        saveGame();
                                     }
                                     return true;
                                 }
@@ -227,12 +229,13 @@ void Game::refreshScreen(){
 	mInputHandler.setTextColor(mInputHandler.WHITE);
 }
 
-vector<string> Game::splittedString(const string line, char delim){
-    vector<string> elems;
-    stringstream ss(line);
-    string item;
-    while (getline(ss, item, delim)) {
-        elems.push_back(item);
-    }
-    return elems;
+void Game::resumeSave(string path){
+	mHero = make_shared<Hero>("");
+	setRoomSize(mHero->loadSave(path));
+	mIsRunning = true;
+	mGameState = ROOM;
+}
+
+void Game::saveGame(){
+	mHero->saveGame(mRoomSize ,"save.txt");
 }

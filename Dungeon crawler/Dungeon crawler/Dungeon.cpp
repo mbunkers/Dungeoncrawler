@@ -9,6 +9,7 @@
 #include "stdafx.h"
 #include "Dungeon.h"
 #include "Factory.h"
+#include <time.h>  
 #include <iostream>
 
 Dungeon::Dungeon(int size){
@@ -22,6 +23,7 @@ shared_ptr<Room> Dungeon::getStartRoom(){
 
 void Dungeon::generateDungeon(int size){
     reset();
+	srand(time(0));
     
 	
     // Generate a vector with rooms with the given size
@@ -211,7 +213,7 @@ void Dungeon::printRoomRow(shared_ptr<Room> room, size_t index, size_t subIndex,
         output.append("P");
     }
     else {
-        if (!room->hasBeenVisited()){
+        if (room->hasBeenVisited()){
             output.append(".");
         }
         else {
