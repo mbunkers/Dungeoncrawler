@@ -1,3 +1,6 @@
+# Source control
+*.orig
+
 # Compiled Object files
 *.slo
 *.lo

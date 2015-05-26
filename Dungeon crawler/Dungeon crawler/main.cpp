@@ -53,16 +53,17 @@ int main(int argc, const char * argv[]) {
         cout << UserActions::prompt;
         getline(cin, input);
         game.setRoomSize(atoi(input.c_str()));
-	
+	game.refreshScreen();
         while (game.isRunning()) {
             // Present options
-			game.refreshScreen();
             game.possibleActions();
             cout << UserActions::prompt;
             string input = "";
             getline(cin, input);
+            game.refreshScreen();
+            cout << "\n";
             game.doAction(input);
-            
+            cout << "\n";
         }
 
     } catch (...) {
