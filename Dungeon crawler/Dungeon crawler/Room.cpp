@@ -38,6 +38,13 @@ void Room::addEnemies(){
 
 void Room::printPossibleMovements(){
     if (mEnemies.size() > 0){
+        cout << "These enemies are in the room:\n";
+        for (size_t i = 0; i < mEnemies.size(); i++){
+            shared_ptr<Enemy> enemy = mEnemies.at(i);
+            cout << "(" + to_string(i) + ") " +  enemy->getName() + "\n";;
+        }
+        
+        cout << "\n";
         cout << "[Fight] Fight against " + to_string(mEnemies.size()) + " enemies\n";
         cout << "[Flee] Flee from this place like a coward!\n";
     }

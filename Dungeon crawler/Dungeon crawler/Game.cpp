@@ -86,8 +86,24 @@ void Game::actionInMain(string action){
 // Find suitable action when in attack
 string Game::actionInAttack(string action){
     if (action == "Flee"){
-        mGameState = GameStates::ROOM;
-        return "You fled from the enemies";
+        // Change of 25% to fail
+        
+        int chance = rand() % (4);
+        if (chance == 0){
+            shared_ptr<Room> room = mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1);
+            enemiesAttackPlayer(room);
+            
+            if (mHero->getHP() == 0){
+                mGameState = GameStates::MAIN;
+                return "You've been defeaten!\n";
+            }
+            
+            return "You failed to flee!";
+        }
+        else {
+            mGameState = GameStates::ROOM;
+            return "You fled from the enemies!";
+        }
     }
     else {
         vector<string> commands = splittedString(action, ' ');
@@ -110,17 +126,7 @@ string Game::actionInAttack(string action){
                         return "You've defeaten this enemy!";
                     }
                     
-                    for (size_t i = 0; i < room->mEnemies.size(); i++){
-                        shared_ptr<Enemy> enemy = room->mEnemies.at(i);
-                        if (!mHero->couldDefend(enemy)){
-                            enemy->Character::attack(mHero);
-                        }
-                        
-                        if (mHero->getHP() == 0){
-                            mGameState = GameStates::MAIN;
-                            return "You've been defeaten!\n";
-                        }
-                    }
+                    enemiesAttackPlayer(room);
                 }
             }
             else {
@@ -131,6 +137,11 @@ string Game::actionInAttack(string action){
         }
     }
     
+    if (mHero->getHP() == 0){
+        mGameState = GameStates::MAIN;
+        return "You've been defeaten!\n";
+    }
+    
     shared_ptr<Room> room = mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1);
     if (room->mEnemies.size() == 0){
         mGameState = GameStates::ROOM;
@@ -138,6 +149,15 @@ string Game::actionInAttack(string action){
     }
     
     return "";
+}
+
+void Game::enemiesAttackPlayer(shared_ptr<Room> room){
+    for (size_t i = 0; i < room->mEnemies.size(); i++){
+        shared_ptr<Enemy> enemy = room->mEnemies.at(i);
+        if (!mHero->couldDefend(enemy)){
+            enemy->Character::attack(mHero);
+        }
+    }
 }
 
 // Find suitable action when in a room
