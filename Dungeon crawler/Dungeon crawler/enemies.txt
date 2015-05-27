@@ -1,4 +1,4 @@
 short,tall,fat
 nasty,filthy
-pirate,spider,terminator
+condottiere,king,merchant,thief,murderer,magican,priest,buildmaster
 happy,angry,revengeful

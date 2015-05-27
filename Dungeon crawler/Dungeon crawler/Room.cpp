@@ -30,9 +30,19 @@ void Room::setVisited(){
 
 void Room::addEnemies(){
     // If enemies are present we shouldn't add more ;)
-    if (mEnemies.size() == 0){
-        shared_ptr<Factory> factory = Factory::Instance();
-        mEnemies.push_back(factory->generateEnemy());
+    // On stairs enemies are not present.
+    if (!canGoDown && !canGoUp){
+        if (mEnemies.size() == 0){
+            // Change of 33%
+            int chance = rand() % (3);
+            if (chance != 0){
+                chance = rand() % (3) + 1;
+                for (int i = 0; i < chance; i++){
+                    shared_ptr<Factory> factory = Factory::Instance();
+                    mEnemies.push_back(factory->generateEnemy());
+                }
+            }
+        }
     }
 }
 
