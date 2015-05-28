@@ -21,6 +21,8 @@ public:
     bool couldDefend(shared_ptr<Character> otherCharacter);
     string getName();
     int getHP();
+    void addHP(int hpToAdd);
+    void lowerHP(int hpToLower);
 };
 
 #endif /* defined(__Dungeon_crawler__Character__) */

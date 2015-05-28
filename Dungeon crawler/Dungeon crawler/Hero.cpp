@@ -7,6 +7,9 @@
 //
 
 #include "Hero.h"
+#include "Potion.h"
+#include "Weapon.h"
+#include "Factory.h"
 
 Hero::Hero(string name) : Character(name){
     mName = name;
@@ -20,6 +23,10 @@ Hero::Hero(string name) : Character(name){
 	mExperiencePoints = 0;
     mCurrentDungeon = 0;
 	setRequiredXp();
+
+    for (int i = 0; i < 5; i++){
+        addItem(Factory::Instance()->generateItem());
+    }
 }
 
 void Hero::printStats(){
@@ -69,12 +76,27 @@ void Hero::addItem(shared_ptr<Item> item){
 	mItems.push_back(item);
 }
 
+int Hero::countOfItems(){
+    return (int)mItems.size();
+}
+
+shared_ptr<Item> Hero::getItem(int index){
+    shared_ptr<Item> item = mItems.at(index);
+    mItems.erase(mItems.begin() + index);
+    return item;
+}
+
 void Hero::printItems(){
 	int i = 0;
 	cout << "\n" << "<-INVENTORY->\n";
-	for (shared_ptr<Item> item : mItems){		
-		cout << i << ": " << item->getName() << " %" << to_string(item->getValue()) << "\n";
-		i++;
+	for (shared_ptr<Item> item : mItems){
+        if (item == dynamic_pointer_cast<Potion>(item)){
+            cout << i << ": " << item->getName() << ", " << item->getDescription() << ". (+" << to_string(item->getValue()) << " HP)\n";
+        }
+        if (item == dynamic_pointer_cast<Weapon>(item)){
+            cout << i << ": " << item->getName() << ", " << item->getDescription() << ". (-" << to_string(item->getValue()) << " HP from each enemy)\n";
+        }
+        i++;
 	}
 }
 
@@ -95,7 +117,7 @@ string Hero::attackActions(){
     
     for (int i = 0; i < mItems.size(); i++){
         shared_ptr<Item> item = mItems.at(i);
-        output += "[Use " + item->getName() + "] Use this item\n";
+        output += "[Use " + to_string(i) + "] Use this item\n";
     }
     
     output += "[Flee] Flee from this fight\n";
@@ -164,7 +186,15 @@ int Hero::loadSave(string path){
 				break;
 				
 			default:
-				addItem(make_shared<Item>(line, 666));
+                vector<string> itemData = splittedString(line, ',');
+                    if (itemData.at(0) == "weapon"){
+                        shared_ptr<Weapon> weapon = make_shared<Weapon>(itemData.at(1), itemData.at(2), atoi(itemData.at(3).c_str()));
+                        addItem(weapon);
+                    }
+                    if (itemData.at(0) == "Potion"){
+                        shared_ptr<Potion> potion = make_shared<Potion>(itemData.at(1), itemData.at(2), atoi(itemData.at(3).c_str()));
+                        addItem(potion);
+                    }
 				break;
 			}
 
@@ -189,6 +219,23 @@ void Hero::saveGame(int roomsize, string path){
 	myfile << to_string(mExperiencePoints) << "\n";
 	myfile << to_string(mPerception) << "\n";
 	for (shared_ptr<Item> item : mItems){
-		myfile << item->getName() << "\n";
+        string type = "";
+        if (item == dynamic_pointer_cast<Weapon>(item)){
+            type = "weapon";
+        }
+        if (item == dynamic_pointer_cast<Potion>(item)){
+            type = "potion";
+        }
+		myfile << type << item->getName() << "," << item->getDescription() << "," << to_string(item->getValue()) << "\n";
 	}
+}
+
+vector<string> Hero::splittedString(const string line, char delim){
+    vector<string> elems;
+    stringstream ss(line);
+    string item;
+    while (getline(ss, item, delim)) {
+        elems.push_back(item);
+    }
+    return elems;
 }

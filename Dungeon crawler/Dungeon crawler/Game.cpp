@@ -7,6 +7,8 @@
 //
 
 #include "Game.h"
+#include "Weapon.h"
+#include "Potion.h"
 
 Game::Game(){
     mIsRunning = false;
@@ -131,7 +133,22 @@ string Game::actionInAttack(string action){
             }
             else {
                 if (commands.at(0) == "Use"){
-                    
+                    if ((atoi(commands.at(1).c_str()) < mHero->countOfItems())){
+                        shared_ptr<Item> item = mHero->getItem((atoi(commands.at(1).c_str())));
+                        
+                        if (item == dynamic_pointer_cast<Potion>(item)){
+                            static_pointer_cast<Potion>(item)->use(mHero);
+                            return "You've used " + item->getName();
+                        }
+                        if (item == dynamic_pointer_cast<Weapon>(item)){
+                            shared_ptr<Room> room = mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1);
+                            for (size_t i = 0; i < room->mEnemies.size(); i++){
+                                shared_ptr<Enemy> enemy = room->mEnemies.at(i);
+                                static_pointer_cast<Potion>(item)->use(enemy);
+                            }
+                            return "You've used " + item->getName();
+                        }
+                    }
                 }
             }
         }

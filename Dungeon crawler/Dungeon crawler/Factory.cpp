@@ -13,6 +13,7 @@
 Factory::Factory(){
     loadRooms();
     loadEnemies();
+    loadItems();
 }
 
 shared_ptr<Factory> Factory::Instance(){
@@ -29,6 +30,22 @@ shared_ptr<Room> Factory::generateRoom(){
 shared_ptr<Enemy> Factory::generateEnemy(){
     shared_ptr<Enemy> enemy = make_shared<Enemy>(generateEnemyDescription(), 1, false);
     return enemy;
+}
+
+shared_ptr<Item> Factory::generateItem(){
+    if (stringFromVector(mStrings.at(2).at(0)) == "weapon"){
+        shared_ptr<Weapon> weapon = make_shared<Weapon>(stringFromVector(mStrings.at(2).at(1)), "It should be " + stringFromVector(mStrings.at(2).at(3)), atoi(stringFromVector(mStrings.at(2).at(4)).c_str()));
+        return weapon;
+    }
+    if (stringFromVector(mStrings.at(2).at(0)) == "potion"){
+        shared_ptr<Potion> potion = make_shared<Potion>(stringFromVector(mStrings.at(2).at(2)), "It should be " + stringFromVector(mStrings.at(2).at(3)), atoi(stringFromVector(mStrings.at(2).at(4)).c_str()));
+        return potion;
+    }
+    
+    shared_ptr<Potion> potion = make_shared<Potion>(stringFromVector(mStrings.at(2).at(2)), "It should be " + stringFromVector(mStrings.at(2).at(3)), atoi(stringFromVector(mStrings.at(2).at(4)).c_str()));
+    return potion;
+
+    return potion;
 }
 
 string Factory::generateEnemyDescription(){
@@ -51,6 +68,11 @@ void Factory::loadRooms(){
 void Factory::loadEnemies(){
     mStrings.push_back(vector<vector<string>>());
     loadDescriptions(1, "enemies.txt");
+}
+
+void Factory::loadItems(){
+    mStrings.push_back(vector<vector<string>>());
+    loadDescriptions(2, "items.txt");
 }
 
 void Factory::loadDescriptions(int index, string path){

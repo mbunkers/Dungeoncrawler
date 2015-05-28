@@ -9,18 +9,21 @@
 #ifndef __Dungeon_crawler__Item__
 #define __Dungeon_crawler__Item__
 
-#include <stdio.h>
 #include "stdafx.h"
+#include "Character.h"
 
 class Item{
 public:
-	Item(string name, int value);
+	Item(string name, string description, int value);
 	int getValue();
 	string getName();
+    string getDescription();
+    virtual void use(shared_ptr<Character> character);
 
 private:
 	string mItemName;
 	int mItemValue;
+    string mDescription;
 };
 
 #endif /* defined(__Dungeon_crawler__Item__) */

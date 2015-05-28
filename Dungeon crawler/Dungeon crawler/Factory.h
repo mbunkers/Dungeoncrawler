@@ -12,7 +12,9 @@
 #include "stdafx.h"
 #include "Room.h"
 #include "Enemy.h"
-using namespace std;
+#include "Item.h"
+#include "Potion.h"
+#include "Weapon.h"
 
 class Factory{
 public:
@@ -20,10 +22,12 @@ public:
     Factory();
     shared_ptr<Room> generateRoom();
     shared_ptr<Enemy> generateEnemy();
+    shared_ptr<Item> generateItem();
 private:
     vector<vector<vector<string>>> mStrings = vector<vector<vector<string>>>();
     void loadRooms();
     void loadEnemies();
+    void loadItems();
     void loadDescriptions(int index, string path);
     vector<string> splittedString(const string line, char delim);
     string generateEnemyDescription();

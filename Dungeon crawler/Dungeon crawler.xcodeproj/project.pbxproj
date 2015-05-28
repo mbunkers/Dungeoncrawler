@@ -16,6 +16,9 @@
 		0C5F3BAA1B14C29300F542B5 /* enemies.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0C5F3BA91B14C28D00F542B5 /* enemies.txt */; };
 		0C7E09801B14B38B002480FB /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C7E097E1B14B38B002480FB /* Enemy.cpp */; };
 		0C7E09831B14B4CC002480FB /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C7E09811B14B4CC002480FB /* Character.cpp */; };
+		0C84E3501B17B27400DA4278 /* items.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0C84E34F1B17B26700DA4278 /* items.txt */; };
+		0C84E3531B17B4CC00DA4278 /* Potion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C84E3511B17B4CC00DA4278 /* Potion.cpp */; };
+		0C84E3561B17B8F900DA4278 /* Weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C84E3541B17B8F900DA4278 /* Weapon.cpp */; };
 		0CAE02CC1B121BCE00802649 /* ASCIIgen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0CAE02C81B121BCE00802649 /* ASCIIgen.cpp */; };
 		0CAE02CD1B121BCE00802649 /* InputHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0CAE02CA1B121BCE00802649 /* InputHandler.cpp */; };
 		0CE03EEB1A9A1F15007BBAD5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0CE03EEA1A9A1F15007BBAD5 /* main.cpp */; };
@@ -30,6 +33,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				0C84E3501B17B27400DA4278 /* items.txt in CopyFiles */,
 				0C5F3BAA1B14C29300F542B5 /* enemies.txt in CopyFiles */,
 				0C41EAAE1AE6E2C700FCA037 /* rooms.txt in CopyFiles */,
 			);
@@ -55,6 +59,11 @@
 		0C7E097F1B14B38B002480FB /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		0C7E09811B14B4CC002480FB /* Character.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Character.cpp; sourceTree = "<group>"; };
 		0C7E09821B14B4CC002480FB /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
+		0C84E34F1B17B26700DA4278 /* items.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = items.txt; sourceTree = "<group>"; };
+		0C84E3511B17B4CC00DA4278 /* Potion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Potion.cpp; sourceTree = "<group>"; };
+		0C84E3521B17B4CC00DA4278 /* Potion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Potion.h; sourceTree = "<group>"; };
+		0C84E3541B17B8F900DA4278 /* Weapon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Weapon.cpp; sourceTree = "<group>"; };
+		0C84E3551B17B8F900DA4278 /* Weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weapon.h; sourceTree = "<group>"; };
 		0CAE02C81B121BCE00802649 /* ASCIIgen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ASCIIgen.cpp; sourceTree = "<group>"; };
 		0CAE02C91B121BCE00802649 /* ASCIIgen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCIIgen.h; sourceTree = "<group>"; };
 		0CAE02CA1B121BCE00802649 /* InputHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputHandler.cpp; sourceTree = "<group>"; };
@@ -81,6 +90,7 @@
 		0C5F3BAB1B14C29B00F542B5 /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				0C84E34F1B17B26700DA4278 /* items.txt */,
 				0C5F3BA91B14C28D00F542B5 /* enemies.txt */,
 				0C41EAAA1AE6DB6300FCA037 /* rooms.txt */,
 				0C41EAAB1AE6DFE200FCA037 /* Factory.cpp */,
@@ -133,6 +143,10 @@
 				0C7E097F1B14B38B002480FB /* Enemy.h */,
 				0C7E09811B14B4CC002480FB /* Character.cpp */,
 				0C7E09821B14B4CC002480FB /* Character.h */,
+				0C84E3511B17B4CC00DA4278 /* Potion.cpp */,
+				0C84E3521B17B4CC00DA4278 /* Potion.h */,
+				0C84E3541B17B8F900DA4278 /* Weapon.cpp */,
+				0C84E3551B17B8F900DA4278 /* Weapon.h */,
 			);
 			name = Characters;
 			sourceTree = "<group>";
@@ -227,9 +241,11 @@
 				0C7E09801B14B38B002480FB /* Enemy.cpp in Sources */,
 				0C41EAB11AE6E8F800FCA037 /* Room.cpp in Sources */,
 				0C41EAAD1AE6DFE200FCA037 /* Factory.cpp in Sources */,
+				0C84E3561B17B8F900DA4278 /* Weapon.cpp in Sources */,
 				0C1557B01AE8297100BF9AE6 /* Dungeon.cpp in Sources */,
 				0C41EAA91AE6D3EE00FCA037 /* Item.cpp in Sources */,
 				0C41EAA61AE6D30C00FCA037 /* Hero.cpp in Sources */,
+				0C84E3531B17B4CC00DA4278 /* Potion.cpp in Sources */,
 				0CE03EEB1A9A1F15007BBAD5 /* main.cpp in Sources */,
 				0C7E09831B14B4CC002480FB /* Character.cpp in Sources */,
 				0CE03EF51A9A2481007BBAD5 /* Game.cpp in Sources */,

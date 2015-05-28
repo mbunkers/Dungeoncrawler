@@ -8,9 +8,8 @@
 
 #include "Item.h"
 
-Item::Item(string name, int value)
-: mItemValue(value), mItemName(name)
-{
+Item::Item(string name, string description, int value)
+: mItemValue(value), mItemName(name), mDescription(description){
 
 }
 
@@ -20,4 +19,12 @@ int Item::getValue(){
 
 string Item::getName(){
 	return mItemName;
+}
+
+string Item::getDescription(){
+    return mDescription;
+}
+
+void Item::use(shared_ptr<Character> character){
+    // Does nothing
 }

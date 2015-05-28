@@ -27,3 +27,11 @@ string Character::getName(){
 int Character::getHP(){
     return mCurrentHealth;
 }
+
+void Character::addHP(int hpToAdd){
+    mCurrentHealth += hpToAdd;
+}
+
+void Character::lowerHP(int hpToLower){
+    mCurrentHealth += hpToLower;
+}

@@ -20,6 +20,7 @@ private:
 	vector<shared_ptr<Item>> mItems;
 	void levelUp();
 	void setRequiredXp();
+    vector<string> splittedString(const string line, char delim);
 
 public:
     Hero(string name);
@@ -33,7 +34,8 @@ public:
     string attackActions();
 	int loadSave(string path);
 	void saveGame(int roomsize, string path);
-	
+    int countOfItems();
+    shared_ptr<Item> getItem(int index);
 };
 
 #endif /* defined(__Dungeon_crawler__Hero__) */
