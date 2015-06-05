@@ -23,10 +23,6 @@ Hero::Hero(string name) : Character(name){
 	mExperiencePoints = 0;
     mCurrentDungeon = 0;
 	setRequiredXp();
-
-    for (int i = 0; i < 5; i++){
-        addItem(Factory::Instance()->generateItem());
-    }
 }
 
 void Hero::printStats(){
@@ -191,7 +187,7 @@ int Hero::loadSave(string path){
                         shared_ptr<Weapon> weapon = make_shared<Weapon>(itemData.at(1), itemData.at(2), atoi(itemData.at(3).c_str()));
                         addItem(weapon);
                     }
-                    if (itemData.at(0) == "Potion"){
+                    if (itemData.at(0) == "potion"){
                         shared_ptr<Potion> potion = make_shared<Potion>(itemData.at(1), itemData.at(2), atoi(itemData.at(3).c_str()));
                         addItem(potion);
                     }
@@ -221,10 +217,10 @@ void Hero::saveGame(int roomsize, string path){
 	for (shared_ptr<Item> item : mItems){
         string type = "";
         if (item == dynamic_pointer_cast<Weapon>(item)){
-            type = "weapon";
+            type = "weapon,";
         }
         if (item == dynamic_pointer_cast<Potion>(item)){
-            type = "potion";
+            type = "potion,";
         }
 		myfile << type << item->getName() << "," << item->getDescription() << "," << to_string(item->getValue()) << "\n";
 	}

@@ -1,15 +1,11 @@
-Leon
+leon
 2
-9
-97
-104
-14
-14
-5
-70
-4
-weaponCatapult,It should be super effective,75
-weaponRusty knife,It should be dangerous,100
-potionMagic potion from Panoramix,It should be dangerous,100
-weaponSniper,It should be super effective,25
-weaponSniper,It should be dangerous,75
+1
+94
+115
+11
+11
+2
+15
+2
+weapon,Sniper,It should be super effective,50
