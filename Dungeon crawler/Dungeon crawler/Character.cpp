@@ -33,5 +33,5 @@ void Character::addHP(int hpToAdd){
 }
 
 void Character::lowerHP(int hpToLower){
-    mCurrentHealth += hpToLower;
+    mCurrentHealth -= hpToLower;
 }

@@ -105,7 +105,7 @@ string Hero::attackActions(){
     output += "You are in a fight with:\n";
     for (size_t i = 0; i < mRoomHistory.at(mRoomHistory.size() - 1)->mEnemies.size(); i++){
         shared_ptr<Enemy> enemy = mRoomHistory.at(mRoomHistory.size() - 1)->mEnemies.at(i);
-        output += enemy->getName() + "\n";
+        output += enemy->getName() + "(" + to_string(enemy->getHP()) + " HP)" + "\n";
     }
     
     output += "\n";

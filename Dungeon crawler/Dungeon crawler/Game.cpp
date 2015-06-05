@@ -95,7 +95,7 @@ string Game::actionInAttack(string action){
             shared_ptr<Room> room = mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1);
             enemiesAttackPlayer(room);
             
-            if (mHero->getHP() == 0){
+            if (mHero->getHP() < 1){
                 mGameState = GameStates::MAIN;
                 return "You've been defeaten!\n";
             }
@@ -118,7 +118,7 @@ string Game::actionInAttack(string action){
                     if (!enemy->couldDefend(mHero)){
                         mHero->attack(enemy);                        
                     }
-                    if (enemy->getHP() <= 0){
+                    if (enemy->getHP() < 1){
 						mHero->addXp(10);
                         room->mEnemies.erase(room->mEnemies.begin() + index);
                         if (room->mEnemies.size() == 0){
@@ -144,8 +144,18 @@ string Game::actionInAttack(string action){
                             shared_ptr<Room> room = mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1);
                             for (size_t i = 0; i < room->mEnemies.size(); i++){
                                 shared_ptr<Enemy> enemy = room->mEnemies.at(i);
-                                static_pointer_cast<Potion>(item)->use(enemy);
+                                static_pointer_cast<Weapon>(item)->use(enemy);
+                                if (enemy->getHP() < 1){
+                                    room->mEnemies.erase(room->mEnemies.begin() + i);
+                                    i--;
+                                }
                             }
+                            
+                            if (room->mEnemies.size() == 0){
+                                mGameState = GameStates::ROOM;
+                                return "You've used " + item->getName() + " and wiped out all enemies";
+                            }
+                            
                             return "You've used " + item->getName();
                         }
                     }
@@ -154,7 +164,7 @@ string Game::actionInAttack(string action){
         }
     }
     
-    if (mHero->getHP() == 0){
+    if (mHero->getHP() < 1){
         mGameState = GameStates::MAIN;
         return "You've been defeaten!\n";
     }

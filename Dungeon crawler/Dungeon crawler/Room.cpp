@@ -59,7 +59,7 @@ void Room::printPossibleMovements(){
         cout << "These enemies are in the room:\n";
         for (size_t i = 0; i < mEnemies.size(); i++){
             shared_ptr<Enemy> enemy = mEnemies.at(i);
-            cout << "(" + to_string(i) + ") " +  enemy->getName() + "\n";;
+            cout << "(" + to_string(i) + ") " +  enemy->getName() + "(" + to_string(enemy->getHP()) + " HP)\n";;
         }
         
         cout << "\n";
