@@ -115,7 +115,7 @@ string Hero::attackActions(){
         output += "[Fight " + to_string(i) + "] Fight against this enemy!\n";
     }
     
-    for (int i = 0; i < mItems.size(); i++){
+    for (size_t i = 0; i < mItems.size(); i++){
         shared_ptr<Item> item = mItems.at(i);
         output += "[Use " + to_string(i) + "] Use this item\n";
     }
@@ -238,4 +238,18 @@ vector<string> Hero::splittedString(const string line, char delim){
         elems.push_back(item);
     }
     return elems;
+}
+
+bool Hero::rest(){
+	bool succes = false;
+	int rValue = rand() % 4;
+	if (rValue > 1){
+		succes = true;
+		mCurrentHealth = mHealthPoints;
+		cout << "You feel rejuvinated from the splendid rest";
+	}
+	else{
+		cout << "You had a nightmare, your health wasn't restored";
+	}
+	return succes;
 }
