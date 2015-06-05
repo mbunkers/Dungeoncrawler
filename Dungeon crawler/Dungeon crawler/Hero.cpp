@@ -18,7 +18,7 @@ Hero::Hero(string name) : Character(name){
 	mCurrentHealth = mHealthPoints;
     mAttackPoints = 10;
     mDefencePoints = 10;
-	mPerception = 0;
+	mPerception = 1;
 	mLevelingSpeed = 15;
 	mExperiencePoints = 0;
     mCurrentDungeon = 0;
@@ -47,7 +47,7 @@ void Hero::printStats(){
 }
 
 void Hero::levelUp(){
-	mLevel++, mHealthPoints++, mAttackPoints++, mDefencePoints++, mPerception++;
+	mHealthPoints += (15 * mLevel), mAttackPoints++, mDefencePoints++, mLevel++, mPerception++;
 	if (mLevel != 10){
 		setRequiredXp();
 	}
@@ -257,8 +257,9 @@ bool Hero::rest(){
 void Hero::search(){
 	if (!mRoomHistory.at(mRoomHistory.size() - 1)->hasBeenSearched()){
 		cout << "You search the room";
-		int rValue = rand() % 4;
-		if (rValue > 1){
+		double rValue = rand() % 10;
+		
+		if (rValue > (10/mPerception)){
 			cout << "You found something!";
 			addItem(Factory::Instance()->generateItem());
 		}
