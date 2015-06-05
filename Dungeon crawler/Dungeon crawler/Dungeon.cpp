@@ -22,9 +22,7 @@ shared_ptr<Room> Dungeon::getStartRoom(){
 }
 
 void Dungeon::generateDungeon(int size){
-    reset();
-	srand((int)time(0));
-    
+    reset();   
 	
     // Generate a vector with rooms with the given size
     shared_ptr<Factory> factory = Factory::Instance();

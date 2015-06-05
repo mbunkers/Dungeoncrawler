@@ -77,6 +77,7 @@ void Room::printPossibleMovements(){
         if (canGoDown){
             cout << "[Down] Go deeper to the monsters lair\n";
         }
+		cout << "[Rest] Restores HP but monsters might find you\n";
     }
 }
 

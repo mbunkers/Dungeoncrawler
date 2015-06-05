@@ -26,6 +26,7 @@ public:
     Hero(string name);
     vector<shared_ptr<Room>> mRoomHistory = vector<shared_ptr<Room>>();
 	void addXp(int xp);
+	bool rest();
 	void printStats();
 	void addItem(shared_ptr<Item> item);
 	void printItems();

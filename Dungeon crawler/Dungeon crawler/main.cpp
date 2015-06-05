@@ -9,6 +9,7 @@
 #include "stdafx.h"
 #include <iostream>
 #include "Game.h"
+#include <time.h>
 
 using namespace std;
 
@@ -37,6 +38,7 @@ int main(int argc, const char * argv[]) {
 
     try {
         Game game = Game();
+		srand((int)time(0));
 		string savePath = "save.txt";
 		string input = "";
 		ifstream file(savePath);

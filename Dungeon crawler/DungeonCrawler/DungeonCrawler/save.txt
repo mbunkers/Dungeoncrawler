@@ -1,11 +1,15 @@
 Leon
 2
-3
-100
-100
-10
-10
-1
-0
-0
-Healing potion
+9
+97
+104
+14
+14
+5
+70
+4
+weaponCatapult,It should be super effective,75
+weaponRusty knife,It should be dangerous,100
+potionMagic potion from Panoramix,It should be dangerous,100
+weaponSniper,It should be super effective,25
+weaponSniper,It should be dangerous,75

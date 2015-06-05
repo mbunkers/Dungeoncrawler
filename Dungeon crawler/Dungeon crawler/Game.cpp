@@ -82,7 +82,7 @@ string Game::doAction(string action){
 
 // Find suitable action when in main
 void Game::actionInMain(string action){
-    
+    //unused
 }
 
 // Find suitable action when in attack
@@ -195,6 +195,13 @@ bool Game::canDoActionInRoom(string action){
         }
     }
     else {
+		if (action == "Rest"){
+			if (!mHero->rest()){
+				mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->setVisited();
+			}
+			
+			return true;
+		}
         if (action == "West"){
             if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mWest != nullptr){
                 mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mWest);
