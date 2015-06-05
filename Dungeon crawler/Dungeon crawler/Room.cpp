@@ -28,6 +28,14 @@ void Room::setVisited(){
     addEnemies();
 }
 
+bool Room::hasBeenSearched(){
+	return mHasBeenSearched;
+}
+
+void Room::setSearched(){
+	mHasBeenSearched = true;
+}
+
 void Room::addEnemies(){
     // If enemies are present we shouldn't add more ;)
     // On stairs enemies are not present.
@@ -77,7 +85,11 @@ void Room::printPossibleMovements(){
         if (canGoDown){
             cout << "[Down] Go deeper to the monsters lair\n";
         }
+		if (!mHasBeenSearched){
+			cout << "[Search] Look for an item in this room\n";
+		}
 		cout << "[Rest] Restores HP but monsters might find you\n";
+		
     }
 }
 

@@ -179,88 +179,95 @@ void Game::enemiesAttackPlayer(shared_ptr<Room> room){
 
 // Find suitable action when in a room
 bool Game::canDoActionInRoom(string action){
-    
-    if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->hasEnemies()){
-        if (action == "Fight"){
-            mGameState = GameStates::ATTACK;
-            return true;
-        }
-        else {
-            if (action == "Flee"){
-                if (mHero->mRoomHistory.size() > 1){
-                    mHero->mRoomHistory.pop_back();
-                    return true;
-                }
-            }
-        }
-    }
-    else {
+
+	if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->hasEnemies()){
+		if (action == "Fight"){
+			mGameState = GameStates::ATTACK;
+			return true;
+		}
+		else {
+			if (action == "Flee"){
+				if (mHero->mRoomHistory.size() > 1){
+					mHero->mRoomHistory.pop_back();
+					return true;
+				}
+			}
+		}
+	}
+	else {
 		if (action == "Rest"){
 			if (!mHero->rest()){
 				mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->setVisited();
 			}
-			
 			return true;
 		}
-        if (action == "West"){
-            if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mWest != nullptr){
-                mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mWest);
-                mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mWest->setVisited();
-                return true;
-            }
-        }
-        else {
-            if (action == "North"){
-                if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mNorth != nullptr){
-                    mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mNorth);
-                    mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mNorth->setVisited();
-                    return true;
-                }
-            }
-            else {
-                if (action == "East"){
-                    if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mEast != nullptr){
-                        mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mEast);
-                        mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mEast->setVisited();
-                        return true;
-                    }
-                }
-                else {
-                    if (action == "South"){
-                        if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mSouth != nullptr){
-                            mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mSouth);
-                            mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mSouth->setVisited();
-                            return true;
-                        }
-                    }
-                    else {
-                        if (action == "Up"){
-                            if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->canGoUp){
-                                if (mHero->toPreviousDungeon()){
-                                    setup();
-									saveGame();
-                                }
-                                return true;
-                            }
-                        }
-                        else {
-                            if (action == "Down"){
-                                if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->canGoDown){
-                                    if (mHero->toNextDungeon()){
-                                        setup();
-                                        saveGame();
-                                    }
-                                    return true;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    return false;
+		else{
+			if (action == "Search"){
+				mHero->search();
+				return true;
+			}
+			else {
+				if (action == "West"){
+					if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mWest != nullptr){
+						mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mWest);
+						mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mWest->setVisited();
+						return true;
+					}
+				}
+				else {
+					if (action == "North"){
+						if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mNorth != nullptr){
+							mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mNorth);
+							mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mNorth->setVisited();
+							return true;
+						}
+					}
+					else {
+						if (action == "East"){
+							if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mEast != nullptr){
+								mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mEast);
+								mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mEast->setVisited();
+								return true;
+							}
+						}
+						else {
+							if (action == "South"){
+								if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mSouth != nullptr){
+									mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mSouth);
+									mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mSouth->setVisited();
+									return true;
+								}
+							}
+							else {
+								if (action == "Up"){
+									if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->canGoUp){
+										if (mHero->toPreviousDungeon()){
+											setup();
+											saveGame();
+										}
+										return true;
+									}
+								}
+								else {
+									if (action == "Down"){
+										if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->canGoDown){
+											if (mHero->toNextDungeon()){
+												setup();
+												saveGame();
+											}
+											return true;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return false;
 }
 
 void Game::refreshScreen(){

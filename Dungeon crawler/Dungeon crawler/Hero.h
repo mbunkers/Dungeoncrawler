@@ -37,6 +37,7 @@ public:
 	void saveGame(int roomsize, string path);
     int countOfItems();
     shared_ptr<Item> getItem(int index);
+	void search();
 };
 
 #endif /* defined(__Dungeon_crawler__Hero__) */

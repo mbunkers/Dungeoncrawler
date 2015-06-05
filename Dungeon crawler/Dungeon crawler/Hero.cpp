@@ -246,10 +246,28 @@ bool Hero::rest(){
 	if (rValue > 1){
 		succes = true;
 		mCurrentHealth = mHealthPoints;
-		cout << "You feel rejuvinated from the splendid rest";
+		cout << "You dreamt of a fair maiden, you feel rejuvinated";
 	}
 	else{
 		cout << "You had a nightmare, your health wasn't restored";
 	}
 	return succes;
+}
+
+void Hero::search(){
+	if (!mRoomHistory.at(mRoomHistory.size() - 1)->hasBeenSearched()){
+		cout << "You search the room";
+		int rValue = rand() % 4;
+		if (rValue > 1){
+			cout << "You found something!";
+			addItem(Factory::Instance()->generateItem());
+		}
+		else {
+			cout << "You couldn't find anything useful";
+		}
+		mRoomHistory.at(mRoomHistory.size() - 1)->setSearched();
+	}
+	else{
+		cout << "All that's left in this room is a speck of dust";
+	}
 }

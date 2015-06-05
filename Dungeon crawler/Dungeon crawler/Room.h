@@ -16,6 +16,7 @@ class Room{
 private:
     string mDescription;
     bool mHasBeenVisited = false;
+	bool mHasBeenSearched = false;
     
 	bool mIsWall;
 	bool mIsAdded;
@@ -41,6 +42,8 @@ public:
     
     bool hasBeenVisited();
     void setVisited();
+	bool hasBeenSearched();
+	void setSearched();
     void addEnemies();
     bool hasEnemies();
     int countOfEnemies();
