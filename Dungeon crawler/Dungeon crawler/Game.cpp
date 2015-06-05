@@ -111,15 +111,15 @@ string Game::actionInAttack(string action){
         vector<string> commands = splittedString(action, ' ');
         if (commands.size() == 2){
             if (commands.at(0) == "Fight"){
-                int index = atoi(commands.at(1).c_str());
+                size_t index = atoi(commands.at(1).c_str());
                 if (index < mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mEnemies.size()){
                     shared_ptr<Room> room = mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1);
                     shared_ptr<Enemy> enemy = room->mEnemies.at(index);
                     if (!enemy->couldDefend(mHero)){
-                        mHero->attack(enemy);
-                        mHero->addXp(10);
+                        mHero->attack(enemy);                        
                     }
-                    if (enemy->getHP() == 0){
+                    if (enemy->getHP() <= 0){
+						mHero->addXp(10);
                         room->mEnemies.erase(room->mEnemies.begin() + index);
                         if (room->mEnemies.size() == 0){
                             mGameState = GameStates::ROOM;

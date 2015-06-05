@@ -88,8 +88,10 @@
     <ClInclude Include="..\..\Dungeon crawler\Hero.h" />
     <ClInclude Include="..\..\Dungeon crawler\InputHandler.h" />
     <ClInclude Include="..\..\Dungeon crawler\Item.h" />
+    <ClInclude Include="..\..\Dungeon crawler\Potion.h" />
     <ClInclude Include="..\..\Dungeon crawler\Room.h" />
     <ClInclude Include="..\..\Dungeon crawler\stdafx.h" />
+    <ClInclude Include="..\..\Dungeon crawler\Weapon.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
@@ -103,8 +105,10 @@
     <ClCompile Include="..\..\Dungeon crawler\InputHandler.cpp" />
     <ClCompile Include="..\..\Dungeon crawler\Item.cpp" />
     <ClCompile Include="..\..\Dungeon crawler\main.cpp" />
+    <ClCompile Include="..\..\Dungeon crawler\Potion.cpp" />
     <ClCompile Include="..\..\Dungeon crawler\Room.cpp" />
     <ClCompile Include="..\..\Dungeon crawler\stdafx.cpp" />
+    <ClCompile Include="..\..\Dungeon crawler\Weapon.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
