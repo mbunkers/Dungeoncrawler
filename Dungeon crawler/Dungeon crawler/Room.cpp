@@ -13,6 +13,11 @@ Room::Room(string description){
     mDescription = description;
 	mIsAdded = false;
 	mIsWall = true;
+    
+    int chance = rand() % (3);
+    if (chance != 0){
+        mTrap = Factory::Instance()->generateTrap();
+    }
 }
 
 string Room::description(){
@@ -115,4 +120,24 @@ void Room::algorithmChecked(){
 
 void Room::algorithmIsListed(){
 	mIsWall = false;
+}
+
+bool Room::hasTrap(){
+    return mTrap != nullptr;
+}
+
+void Room::activateTrap(shared_ptr<Character> character){
+    mTrap->activate(character);
+}
+
+void Room::deactivateTrap(){
+    mTrap = nullptr;
+}
+
+string Room::trapDescription(){
+    return mTrap->getDescription();
+}
+
+int Room::trapDamage(){
+    return mTrap->damage();
 }

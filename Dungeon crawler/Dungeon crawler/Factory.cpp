@@ -14,22 +14,20 @@ Factory::Factory(){
     loadRooms();
     loadEnemies();
     loadItems();
+    loadTraps();
 }
 
 shared_ptr<Factory> Factory::Instance(){
     static shared_ptr<Factory> instance = make_shared<Factory>();
-    
     return instance;
 }
 
 shared_ptr<Room> Factory::generateRoom(){
-    shared_ptr<Room> room = make_shared<Room>(generateRoomDescription());
-    return room;
+    return make_shared<Room>(generateRoomDescription());
 }
 
 shared_ptr<Enemy> Factory::generateEnemy(){
-    shared_ptr<Enemy> enemy = make_shared<Enemy>(generateEnemyDescription(), 1, false);
-    return enemy;
+    return make_shared<Enemy>(generateEnemyDescription(), 1, false);
 }
 
 shared_ptr<Item> Factory::generateItem(){
@@ -44,8 +42,10 @@ shared_ptr<Item> Factory::generateItem(){
     
     shared_ptr<Potion> potion = make_shared<Potion>(stringFromVector(mStrings.at(2).at(2)), "It should be " + stringFromVector(mStrings.at(2).at(3)), atoi(stringFromVector(mStrings.at(2).at(4)).c_str()));
     return potion;
+}
 
-    return potion;
+shared_ptr<Trap> Factory::generateTrap(){
+    return make_shared<Trap>(generateTrapDescription(), atoi(stringFromVector(mStrings.at(3).at(3)).c_str()));
 }
 
 string Factory::generateEnemyDescription(){
@@ -54,6 +54,10 @@ string Factory::generateEnemyDescription(){
 
 string Factory::generateRoomDescription(){
     return "It's a " + stringFromVector(mStrings.at(0).at(0)) + " " + stringFromVector(mStrings.at(0).at(1)) + " room with an " + stringFromVector(mStrings.at(0).at(2)) + " floor. You are standing before " + stringFromVector(mStrings.at(0).at(3)) + " which is lighten by " + stringFromVector(mStrings.at(0).at(4)) + ". In the corner you see some " + stringFromVector(mStrings.at(0).at(5));
+}
+
+string Factory::generateTrapDescription(){
+    return stringFromVector(mStrings.at(3).at(0)) + " with an " + stringFromVector(mStrings.at(3).at(1)) + " in the " + stringFromVector(mStrings.at(3).at(2));
 }
 
 string Factory::stringFromVector(vector<string> data){
@@ -73,6 +77,11 @@ void Factory::loadEnemies(){
 void Factory::loadItems(){
     mStrings.push_back(vector<vector<string>>());
     loadDescriptions(2, "items.txt");
+}
+
+void Factory::loadTraps(){
+    mStrings.push_back(vector<vector<string>>());
+    loadDescriptions(3, "traps.txt");
 }
 
 void Factory::loadDescriptions(int index, string path){

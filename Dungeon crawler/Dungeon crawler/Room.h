@@ -11,6 +11,7 @@
 
 #include "stdafx.h"
 #include "Enemy.h"
+#include "Trap.h"
 
 class Room{
 private:
@@ -20,6 +21,8 @@ private:
     
 	bool mIsWall;
 	bool mIsAdded;
+    
+    shared_ptr<Trap> mTrap;
     
 public:
     Room(string description);
@@ -47,6 +50,12 @@ public:
     void addEnemies();
     bool hasEnemies();
     int countOfEnemies();
+    
+    bool hasTrap();
+    void activateTrap(shared_ptr<Character> character);
+    void deactivateTrap();
+    string trapDescription();
+    int trapDamage();
     
     void printPossibleMovements();
 };

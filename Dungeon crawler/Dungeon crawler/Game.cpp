@@ -72,9 +72,7 @@ string Game::doAction(string action){
         case ATTACK:
             return actionInAttack(action) + "\n";
         case ROOM:
-            if (!canDoActionInRoom(action)){
-                return "You can't do this!\n";
-            }
+            return canDoActionInRoom(action) + "\n";
         default:
             return "\n";
     }
@@ -188,18 +186,18 @@ void Game::enemiesAttackPlayer(shared_ptr<Room> room){
 }
 
 // Find suitable action when in a room
-bool Game::canDoActionInRoom(string action){
+string Game::canDoActionInRoom(string action){
 
 	if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->hasEnemies()){
 		if (action == "Fight"){
 			mGameState = GameStates::ATTACK;
-			return true;
+			return "";
 		}
 		else {
 			if (action == "Flee"){
 				if (mHero->mRoomHistory.size() > 1){
 					mHero->mRoomHistory.pop_back();
-					return true;
+					return "";
 				}
 			}
 		}
@@ -208,20 +206,20 @@ bool Game::canDoActionInRoom(string action){
 		if (action == "Rest"){
 			if (!mHero->rest()){
 				mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->setVisited();
+                return "You had a nightmare, your health wasn't restored";
 			}
-			return true;
+            return "You dreamt of a fair maiden, you feel rejuvinated";
 		}
 		else{
 			if (action == "Search"){
-				mHero->search();
-				return true;
+				return mHero->search();
 			}
 			else {
 				if (action == "West"){
 					if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mWest != nullptr){
 						mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mWest);
 						mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mWest->setVisited();
-						return true;
+						return "";
 					}
 				}
 				else {
@@ -229,7 +227,7 @@ bool Game::canDoActionInRoom(string action){
 						if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mNorth != nullptr){
 							mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mNorth);
 							mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mNorth->setVisited();
-							return true;
+							return "";
 						}
 					}
 					else {
@@ -237,7 +235,7 @@ bool Game::canDoActionInRoom(string action){
 							if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mEast != nullptr){
 								mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mEast);
 								mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mEast->setVisited();
-								return true;
+								return "";
 							}
 						}
 						else {
@@ -245,7 +243,7 @@ bool Game::canDoActionInRoom(string action){
 								if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mSouth != nullptr){
 									mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mSouth);
 									mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mSouth->setVisited();
-									return true;
+									return "";
 								}
 							}
 							else {
@@ -255,7 +253,7 @@ bool Game::canDoActionInRoom(string action){
 											setup();
 											saveGame();
 										}
-										return true;
+										return "";
 									}
 								}
 								else {
@@ -265,7 +263,7 @@ bool Game::canDoActionInRoom(string action){
 												setup();
 												saveGame();
 											}
-											return true;
+											return "";
 										}
 									}
 								}
@@ -277,7 +275,7 @@ bool Game::canDoActionInRoom(string action){
 		}
 	}
 
-	return false;
+	return "You can't do this!";
 }
 
 void Game::refreshScreen(){

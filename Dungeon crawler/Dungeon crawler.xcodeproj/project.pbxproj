@@ -24,6 +24,8 @@
 		0CE03EEB1A9A1F15007BBAD5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0CE03EEA1A9A1F15007BBAD5 /* main.cpp */; };
 		0CE03EF21A9A1FC9007BBAD5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE03EF11A9A1FC9007BBAD5 /* CoreFoundation.framework */; };
 		0CE03EF51A9A2481007BBAD5 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0CE03EF31A9A2481007BBAD5 /* Game.cpp */; };
+		0CEE2BDA1B24792B002682D0 /* traps.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0CEE2BD91B247836002682D0 /* traps.txt */; };
+		0CEE2BDD1B247A24002682D0 /* Trap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0CEE2BDB1B247A24002682D0 /* Trap.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +35,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				0CEE2BDA1B24792B002682D0 /* traps.txt in CopyFiles */,
 				0C84E3501B17B27400DA4278 /* items.txt in CopyFiles */,
 				0C5F3BAA1B14C29300F542B5 /* enemies.txt in CopyFiles */,
 				0C41EAAE1AE6E2C700FCA037 /* rooms.txt in CopyFiles */,
@@ -73,6 +76,9 @@
 		0CE03EF11A9A1FC9007BBAD5 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		0CE03EF31A9A2481007BBAD5 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		0CE03EF41A9A2481007BBAD5 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		0CEE2BD91B247836002682D0 /* traps.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = traps.txt; sourceTree = "<group>"; };
+		0CEE2BDB1B247A24002682D0 /* Trap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Trap.cpp; sourceTree = "<group>"; };
+		0CEE2BDC1B247A24002682D0 /* Trap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trap.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +101,7 @@
 				0C41EAAA1AE6DB6300FCA037 /* rooms.txt */,
 				0C41EAAB1AE6DFE200FCA037 /* Factory.cpp */,
 				0C41EAAC1AE6DFE200FCA037 /* Factory.h */,
+				0CEE2BD91B247836002682D0 /* traps.txt */,
 			);
 			name = Config;
 			sourceTree = "<group>";
@@ -147,6 +154,8 @@
 				0C84E3521B17B4CC00DA4278 /* Potion.h */,
 				0C84E3541B17B8F900DA4278 /* Weapon.cpp */,
 				0C84E3551B17B8F900DA4278 /* Weapon.h */,
+				0CEE2BDB1B247A24002682D0 /* Trap.cpp */,
+				0CEE2BDC1B247A24002682D0 /* Trap.h */,
 			);
 			name = Characters;
 			sourceTree = "<group>";
@@ -238,6 +247,7 @@
 			files = (
 				0CAE02CC1B121BCE00802649 /* ASCIIgen.cpp in Sources */,
 				0CAE02CD1B121BCE00802649 /* InputHandler.cpp in Sources */,
+				0CEE2BDD1B247A24002682D0 /* Trap.cpp in Sources */,
 				0C7E09801B14B38B002480FB /* Enemy.cpp in Sources */,
 				0C41EAB11AE6E8F800FCA037 /* Room.cpp in Sources */,
 				0C41EAAD1AE6DFE200FCA037 /* Factory.cpp in Sources */,

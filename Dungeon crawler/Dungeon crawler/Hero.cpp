@@ -242,29 +242,38 @@ bool Hero::rest(){
 	if (rValue > 1){
 		succes = true;
 		mCurrentHealth = mHealthPoints;
-		cout << "You dreamt of a fair maiden, you feel rejuvinated";
-	}
-	else{
-		cout << "You had a nightmare, your health wasn't restored";
 	}
 	return succes;
 }
 
-void Hero::search(){
-	if (!mRoomHistory.at(mRoomHistory.size() - 1)->hasBeenSearched()){
-		cout << "You search the room";
+string Hero::search(){
+    shared_ptr<Room> room = mRoomHistory.at(mRoomHistory.size() - 1);
+	if (!room->hasBeenSearched()){
+        string output = "You search the room\n";
 		double rValue = rand() % 10;
 		
 		if (rValue > (10/mPerception)){
-			cout << "You found something!";
+            output.append("You found something!\n");
 			addItem(Factory::Instance()->generateItem());
+            if (room->hasTrap()){
+                output.append("You're not " + room->trapDescription() + "\n");
+                room->deactivateTrap();
+            }
 		}
 		else {
-			cout << "You couldn't find anything useful";
+            output.append("You couldn't find anything useful\n");
+            if (room->hasTrap()){
+//                room->activateTrap((shared_ptr<Hero>)this);
+                output.append("You're " + room->trapDescription() + "\n");
+                output.append("You lost " + to_string(room->trapDamage()) + "HP\n");
+                
+            }
 		}
-		mRoomHistory.at(mRoomHistory.size() - 1)->setSearched();
+		room->setSearched();
+        
+        return output;
 	}
 	else{
-		cout << "All that's left in this room is a speck of dust";
+		return "All that's left in this room is a speck of dust";
 	}
 }

@@ -15,6 +15,7 @@
 #include "Item.h"
 #include "Potion.h"
 #include "Weapon.h"
+#include "Trap.h"
 
 class Factory{
 public:
@@ -23,15 +24,18 @@ public:
     shared_ptr<Room> generateRoom();
     shared_ptr<Enemy> generateEnemy();
     shared_ptr<Item> generateItem();
+    shared_ptr<Trap> generateTrap();
 private:
     vector<vector<vector<string>>> mStrings = vector<vector<vector<string>>>();
     void loadRooms();
     void loadEnemies();
     void loadItems();
+    void loadTraps();
     void loadDescriptions(int index, string path);
     vector<string> splittedString(const string line, char delim);
     string generateEnemyDescription();
     string generateRoomDescription();
+    string generateTrapDescription();
     string stringFromVector(vector<string> data);
 };
 

@@ -47,7 +47,7 @@ public:
 
     void actionInMain(string action);
     string actionInAttack(string action);
-    bool canDoActionInRoom(string action);
+    string canDoActionInRoom(string action);
 
 
 };
