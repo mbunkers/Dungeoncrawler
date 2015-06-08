@@ -18,7 +18,7 @@ Game::Game(){
 }
 
 void Game::setup(){
-    mDungeon = make_shared<Dungeon>(mRoomSize);
+    mDungeon = make_shared<Dungeon>(mRoomSize, mHero->getDungeonLevel());
     mHero->mRoomHistory.push_back(mDungeon->getStartRoom());
     mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->setVisited();
 }
@@ -117,7 +117,11 @@ string Game::actionInAttack(string action){
                         mHero->attack(enemy);                        
                     }
                     if (enemy->getHP() < 1){
-						mHero->addXp(10);
+						mHero->addXp(enemy->getXp());
+						if (enemy->isBoss()){							
+								mGameState = GameStates::MAIN;
+								return "	With a mighty swing you strike down your final opponent.\n	It was a long journey into depths of almost hell itself!\n	But you succeeded where others did not!\n	Covered in blood, dust and the entrails of foes slain.\n	You walk the final hall towards your prize to secumb to it's glory.\n	This is, the end. \n\n FIN";	
+						}
                         room->mEnemies.erase(room->mEnemies.begin() + index);
                         if (room->mEnemies.size() == 0){
                             mGameState = GameStates::ROOM;
@@ -164,8 +168,10 @@ string Game::actionInAttack(string action){
     
     if (mHero->getHP() < 1){
         mGameState = GameStates::MAIN;
-        return "You've been defeaten!\n";
+        return "	Struck down by the terrors of the dungeon.\n	You lie bleeding on the ground with your body losing all color except from the blood on your the skin.\n	The last thing you feel is the knawing of rats on your almost lifeless body.\n	This is the end... \n\n FIN";
     }
+
+	
     
     shared_ptr<Room> room = mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1);
     if (room->mEnemies.size() == 0){
@@ -252,9 +258,13 @@ string Game::canDoActionInRoom(string action){
 										if (mHero->toPreviousDungeon()){
 											setup();
 											saveGame();
+											return "You move back up";
 										}
-										return "";
+										else{
+											return "Trying to run before you get any treasure ey? Cowards should just rot in the dungeon.";
+										}										
 									}
+									return "";
 								}
 								else {
 									if (action == "Down"){
@@ -263,7 +273,7 @@ string Game::canDoActionInRoom(string action){
 												setup();
 												saveGame();
 											}
-											return "";
+											return "You went further into the depths";
 										}
 									}
 								}

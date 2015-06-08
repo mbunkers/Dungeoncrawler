@@ -1,0 +1,4 @@
+stabbed,sliced in half
+spear,knife
+back,head,heart
+-10,-20,-30,-40,-50

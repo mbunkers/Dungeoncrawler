@@ -1,11 +1,10 @@
 leon
-2
 1
-94
-115
-11
-11
-2
+9
 15
-2
-weapon,Sniper,It should be super effective,50
+15
+10
+10
+1
+0
+1

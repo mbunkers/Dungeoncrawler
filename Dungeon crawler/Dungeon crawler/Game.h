@@ -22,6 +22,7 @@ enum GameStates{
 	};
 private:
 	int mRoomSize;
+	bool mFlagWin = false;
 	shared_ptr<Hero> mHero;
 	bool mIsRunning;
 	GameStates mGameState = MAIN;

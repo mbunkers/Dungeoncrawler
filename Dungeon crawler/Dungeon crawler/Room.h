@@ -21,11 +21,13 @@ private:
     
 	bool mIsWall;
 	bool mIsAdded;
+
+	int mDungeonLevel;
     
     shared_ptr<Trap> mTrap;
     
 public:
-    Room(string description);
+    Room(string description, int dungeonlevel);
     string description();
     
     vector<shared_ptr<Enemy>> mEnemies = vector<shared_ptr<Enemy>>();

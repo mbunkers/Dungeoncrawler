@@ -24,6 +24,7 @@ private:
 
 public:
     Hero(string name);
+	int getDungeonLevel();
     vector<shared_ptr<Room>> mRoomHistory = vector<shared_ptr<Room>>();
 	void addXp(int xp);
 	bool rest();
