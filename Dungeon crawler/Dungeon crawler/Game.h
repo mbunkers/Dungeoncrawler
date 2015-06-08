@@ -29,7 +29,7 @@ private:
 	shared_ptr<Dungeon> mDungeon;
 	InputHandler mInputHandler;
     vector<string> splittedString(const string line, char delim);
-    void enemiesAttackPlayer(shared_ptr<Room> room);
+    string enemiesAttackPlayer(shared_ptr<Room> room);
 public:
     Game();
 	void refreshScreen();

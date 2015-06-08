@@ -15,7 +15,8 @@ Enemy::Enemy(string name, int level, bool isBoss) : Character(name){
 
 void Enemy::setStats(int dungeonLevel){
 	if (mIsBoss){
-		mLevel = 20;		
+		mLevel = 20;	
+		mName = "BOSS, " + mName;
 	}
 	else{
 		mLevel = dungeonLevel + (rand() % 3) - 1;
@@ -27,10 +28,12 @@ void Enemy::setStats(int dungeonLevel){
 		}
 	}
 
-	mHealthPoints = 1 + 3 * mLevel / 2;
+	mHealthPoints = 3 * mLevel / 2 + rand() % 20 - 10;
+	if (mHealthPoints < 1)
+		mHealthPoints = 2;
 	mCurrentHealth = mHealthPoints;
-	mAttackPoints = 10 + mLevel;
-	mDefencePoints = 10 + mLevel;
+	mAttackPoints = 10 + mLevel + rand() % 10 - 5;
+	mDefencePoints = 10 + mLevel + rand() % 10 - 5;
 
 }
 

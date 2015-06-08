@@ -113,9 +113,11 @@ string Game::actionInAttack(string action){
                 if (index < mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mEnemies.size()){
                     shared_ptr<Room> room = mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1);
                     shared_ptr<Enemy> enemy = room->mEnemies.at(index);
-                    if (!enemy->couldDefend(mHero)){
-                        mHero->attack(enemy);                        
-                    }
+
+					//try to attack enemy
+					string attackMessage;                    
+                    attackMessage = mHero->attack(enemy); 
+
                     if (enemy->getHP() < 1){
 						mHero->addXp(enemy->getXp());
 						if (enemy->isBoss()){							
@@ -125,12 +127,12 @@ string Game::actionInAttack(string action){
                         room->mEnemies.erase(room->mEnemies.begin() + index);
                         if (room->mEnemies.size() == 0){
                             mGameState = GameStates::ROOM;
-                            return "You've defeaten all enemies here!";
+							return attackMessage + "You've defeaten all enemies here!";
                         }
-                        return "You've defeaten this enemy!";
-                    }
-                    
-                    enemiesAttackPlayer(room);
+						return attackMessage + "You've defeaten this enemy!" + enemiesAttackPlayer(room);
+					}	
+					
+					return attackMessage + enemiesAttackPlayer(room);
                 }
             }
             else {
@@ -168,7 +170,7 @@ string Game::actionInAttack(string action){
     
     if (mHero->getHP() < 1){
         mGameState = GameStates::MAIN;
-        return "	Struck down by the terrors of the dungeon.\n	You lie bleeding on the ground with your body losing all color except from the blood on your the skin.\n	The last thing you feel is the knawing of rats on your almost lifeless body.\n	This is the end... \n\n FIN";
+        return "	Struck down by the terrors of the dungeon.\n	You lie bleeding on the ground with your body losing all color except from the blood on your skin.\n	The last thing you feel is the knawing of rats on your almost lifeless body.\n	This is the end... \n\n FIN";
     }
 
 	
@@ -182,13 +184,13 @@ string Game::actionInAttack(string action){
     return "";
 }
 
-void Game::enemiesAttackPlayer(shared_ptr<Room> room){
+string Game::enemiesAttackPlayer(shared_ptr<Room> room){
+	string log = "";
     for (size_t i = 0; i < room->mEnemies.size(); i++){
-        shared_ptr<Enemy> enemy = room->mEnemies.at(i);
-        if (!mHero->couldDefend(enemy)){
-            enemy->Character::attack(mHero);
-        }
+        shared_ptr<Enemy> enemy = room->mEnemies.at(i);        
+        log.append(enemy->Character::attack(mHero));        
     }
+	return log;
 }
 
 // Find suitable action when in a room

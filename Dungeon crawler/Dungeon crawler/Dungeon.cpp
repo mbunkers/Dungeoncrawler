@@ -195,11 +195,11 @@ void Dungeon::printLegenda(){
     cout << "Legenda:\n";
     cout << "P    : You\n";
     cout << "|    : Path\n";
-    cout << "B    : Boss\n";
 	cout << "E    : Enem(y/ies)\n";
     cout << "N    : Room\n";
     cout << "D    : Stairs down\n";
     cout << "U    : Stairs up\n";
+	cout << "X    : Stairs up and down\n";
     cout << "?    : Not yet visited\n";
     cout << "\n";
 }
@@ -217,16 +217,19 @@ void Dungeon::printRoomRow(shared_ptr<Room> room, size_t index, size_t subIndex,
 	else
 	if (room->hasEnemies()){
 		output.append("E");
-		//if boss
 	}
 	else
-	if (room->canGoUp){
-		output.append("U");
+	if (room->canGoDown && room->canGoUp){
+		output.append("X");
 	}
 	else
 	if (room->canGoDown){
 		output.append("D");
 	}
+	else
+	if (room->canGoUp){
+		output.append("U");
+	}	
 	else {
 		output.append("N");
 	}      
