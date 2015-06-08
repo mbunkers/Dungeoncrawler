@@ -20,7 +20,7 @@ Game::Game(){
 void Game::setup(){
     mDungeon = make_shared<Dungeon>(mRoomSize);
     mHero->mRoomHistory.push_back(mDungeon->getStartRoom());
-    mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->setVisited();
+    mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->setVisited(mHero);
 }
 
 void Game::setupHero(string name){
@@ -205,7 +205,7 @@ string Game::canDoActionInRoom(string action){
 	else {
 		if (action == "Rest"){
 			if (!mHero->rest()){
-				mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->setVisited();
+				mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->setVisited(mHero);
                 return "You had a nightmare, your health wasn't restored";
 			}
             return "You dreamt of a fair maiden, you feel rejuvinated";
@@ -218,7 +218,7 @@ string Game::canDoActionInRoom(string action){
 				if (action == "West"){
 					if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mWest != nullptr){
 						mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mWest);
-						mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mWest->setVisited();
+						mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mWest->setVisited(mHero);
 						return "";
 					}
 				}
@@ -226,7 +226,7 @@ string Game::canDoActionInRoom(string action){
 					if (action == "North"){
 						if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mNorth != nullptr){
 							mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mNorth);
-							mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mNorth->setVisited();
+							mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mNorth->setVisited(mHero);
 							return "";
 						}
 					}
@@ -234,7 +234,7 @@ string Game::canDoActionInRoom(string action){
 						if (action == "East"){
 							if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mEast != nullptr){
 								mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mEast);
-								mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mEast->setVisited();
+								mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mEast->setVisited(mHero);
 								return "";
 							}
 						}
@@ -242,7 +242,7 @@ string Game::canDoActionInRoom(string action){
 							if (action == "South"){
 								if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mSouth != nullptr){
 									mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mSouth);
-									mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mSouth->setVisited();
+									mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mSouth->setVisited(mHero);
 									return "";
 								}
 							}

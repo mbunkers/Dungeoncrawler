@@ -10,6 +10,7 @@
 #define __Dungeon_crawler__Room__
 
 #include "stdafx.h"
+#include "Hero.h"
 #include "Enemy.h"
 #include "Trap.h"
 
@@ -44,7 +45,7 @@ public:
 	void algorithmIsListed();
     
     bool hasBeenVisited();
-    void setVisited();
+    string setVisited(shared_ptr<Hero> character);
 	bool hasBeenSearched();
 	void setSearched();
     void addEnemies();

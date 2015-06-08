@@ -28,9 +28,36 @@ bool Room::hasBeenVisited(){
     return mHasBeenVisited;
 }
 
-void Room::setVisited(){
+string Room::setVisited(shared_ptr<Hero> character){
     mHasBeenVisited = true;
     addEnemies();
+    
+    if (!canGoDown && !canGoUp){
+        
+        string output = "You search the room\n";
+        double rValue = rand() % 10;
+        
+        if (rValue > (10/character->perception())){
+            output.append("You found a trap!\n");
+            if (hasTrap()){
+                output.append("You're not " + trapDescription() + "\n");
+                deactivateTrap();
+            }
+        }
+        else {
+            output.append("You couldn't the trap\n");
+            if (hasTrap()){
+                activateTrap(character);
+                output.append("You're " + trapDescription() + "\n");
+                output.append("You lost " + to_string(trapDamage()) + "HP\n");
+                
+            }
+            
+        }
+        
+        return output;
+    }
+    return "";
 }
 
 bool Room::hasBeenSearched(){

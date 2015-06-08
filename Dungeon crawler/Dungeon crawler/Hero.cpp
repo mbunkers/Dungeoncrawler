@@ -42,6 +42,10 @@ void Hero::printStats(){
 	cout << ("Perception: " + to_string(mPerception) + "\n");
 }
 
+int Hero::perception(){
+    return mPerception;
+}
+
 void Hero::levelUp(){
 	mHealthPoints += (15 * mLevel), mAttackPoints++, mDefencePoints++, mLevel++, mPerception++;
 	if (mLevel != 10){
@@ -255,19 +259,9 @@ string Hero::search(){
 		if (rValue > (10/mPerception)){
             output.append("You found something!\n");
 			addItem(Factory::Instance()->generateItem());
-            if (room->hasTrap()){
-                output.append("You're not " + room->trapDescription() + "\n");
-                room->deactivateTrap();
-            }
 		}
 		else {
             output.append("You couldn't find anything useful\n");
-            if (room->hasTrap()){
-//                room->activateTrap((shared_ptr<Hero>)this);
-                output.append("You're " + room->trapDescription() + "\n");
-                output.append("You lost " + to_string(room->trapDamage()) + "HP\n");
-                
-            }
 		}
 		room->setSearched();
         

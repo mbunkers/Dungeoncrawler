@@ -10,9 +10,9 @@
 #define __Dungeon_crawler__Hero__
 
 #include "stdafx.h"
-#include "Item.h"
 #include "Room.h"
 #include "Character.h"
+#include "Item.h"
 
 class Hero : public Character{
 private:
@@ -38,6 +38,7 @@ public:
     int countOfItems();
     shared_ptr<Item> getItem(int index);
 	string search();
+    int perception();
 };
 
 #endif /* defined(__Dungeon_crawler__Hero__) */
