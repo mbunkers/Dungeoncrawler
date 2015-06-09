@@ -10,7 +10,7 @@
 #define __Dungeon_crawler__Room__
 
 #include "stdafx.h"
-#include "Hero.h"
+#include "Character.h"
 #include "Enemy.h"
 #include "Trap.h"
 
@@ -22,11 +22,13 @@ private:
     
 	bool mIsWall;
 	bool mIsAdded;
+
+	int mDungeonLevel;
     
     shared_ptr<Trap> mTrap;
     
 public:
-    Room(string description);
+    Room(string description, int dungeonlevel);
     string description();
     
     vector<shared_ptr<Enemy>> mEnemies = vector<shared_ptr<Enemy>>();
@@ -45,7 +47,7 @@ public:
 	void algorithmIsListed();
     
     bool hasBeenVisited();
-    string setVisited(shared_ptr<Hero> character);
+    string setVisited(shared_ptr<Character> character);
 	bool hasBeenSearched();
 	void setSearched();
     void addEnemies();

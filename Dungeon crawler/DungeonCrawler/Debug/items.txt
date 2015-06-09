@@ -2,4 +2,4 @@ weapon,potion
 Holy handgrenate,Atomic bom,Rusty knife,Sniper,Catapult
 Magic potion from Panoramix,Potion of eternal youth
 super effective,dangerous
-25,50,75,100
+10,10,10,20,25,15,5,10,100,50

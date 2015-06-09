@@ -22,13 +22,14 @@ enum GameStates{
 	};
 private:
 	int mRoomSize;
+	bool mFlagWin = false;
 	shared_ptr<Hero> mHero;
 	bool mIsRunning;
 	GameStates mGameState = MAIN;
 	shared_ptr<Dungeon> mDungeon;
 	InputHandler mInputHandler;
     vector<string> splittedString(const string line, char delim);
-    void enemiesAttackPlayer(shared_ptr<Room> room);
+    string enemiesAttackPlayer(shared_ptr<Room> room);
 public:
     Game();
 	void refreshScreen();

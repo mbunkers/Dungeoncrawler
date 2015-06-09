@@ -12,16 +12,16 @@
 #include <time.h>  
 #include <iostream>
 
-Dungeon::Dungeon(int size){
+Dungeon::Dungeon(int size, int level){
     mMap = vector<vector<shared_ptr<Room>>>();
-    generateDungeon(size);
+    generateDungeon(size, level);
 }
 
 shared_ptr<Room> Dungeon::getStartRoom(){
     return startRoom;
 }
 
-void Dungeon::generateDungeon(int size){
+void Dungeon::generateDungeon(int size, int level){
     reset();   
 	
     // Generate a vector with rooms with the given size
@@ -29,7 +29,7 @@ void Dungeon::generateDungeon(int size){
     for (int i = 0; i < size; i++){
         mMap.push_back(vector<shared_ptr<Room>>());
         for (int j = 0; j < size; j++){
-            shared_ptr<Room> room = factory->generateRoom();
+            shared_ptr<Room> room = factory->generateRoom(level);
             mMap.at(i).push_back(room);
 			room->X = j;
 			room->Y = i;
@@ -193,42 +193,47 @@ void Dungeon::printMap(shared_ptr<Hero> player){
 
 void Dungeon::printLegenda(){
     cout << "Legenda:\n";
-    cout << "P -  : You\n";
-    cout << "| -  : Path\n";
-    cout << "S    : Start location\n";
-    cout << "E    : Boss\n";
+    cout << "P    : You\n";
+    cout << "|    : Path\n";
+	cout << "E    : Enem(y/ies)\n";
     cout << "N    : Room\n";
-    cout << "L    : Stairs down\n";
-    cout << "H    : Stairs up\n";
-    cout << ".    : Not yet visited\n";
+    cout << "D    : Stairs down\n";
+    cout << "U    : Stairs up\n";
+	cout << "X    : Stairs up and down\n";
+    cout << "?    : Not yet visited\n";
     cout << "\n";
 }
 
 void Dungeon::printRoomRow(shared_ptr<Room> room, size_t index, size_t subIndex, shared_ptr<Hero> player){
     string output = "";
-    
-    if (room == player->mRoomHistory.at(player->mRoomHistory.size() - 1)){
-        output.append("P");
-    }
-    else {
-        if (!room->hasBeenVisited()){
-            output.append(".");
-        }
-        else {
-            if (room->canGoUp){
-                output.append("H");
-            }
-            else {
-                if (room->canGoDown){
-                    output.append("L");
-                }
-                else {
-                    output.append("N");
-                }
-            }
-        }
-    }
-    
+
+	if (room == player->mRoomHistory.at(player->mRoomHistory.size() - 1)){
+		output.append("P");
+	}
+	else
+	if (!room->hasBeenVisited()){
+		output.append("?");
+	}
+	else
+	if (room->hasEnemies()){
+		output.append("E");
+	}
+	else
+	if (room->canGoDown && room->canGoUp){
+		output.append("X");
+	}
+	else
+	if (room->canGoDown){
+		output.append("D");
+	}
+	else
+	if (room->canGoUp){
+		output.append("U");
+	}	
+	else {
+		output.append("N");
+	}      
+
     // Out of bounds check for path
     if (subIndex < mMap.at(index).size() - 1){
         // Check for right

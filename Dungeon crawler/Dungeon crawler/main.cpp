@@ -46,6 +46,7 @@ int main(int argc, const char * argv[]) {
 			cout << "Do you wish to continue your previous adventure? Y to continue \n";
 			cout << UserActions::prompt;
 			getline(cin, input);
+			cout << "\n";
 		}
 
 		if (input.compare("Y") == 0){
@@ -55,14 +56,17 @@ int main(int argc, const char * argv[]) {
 			cout << "NEW GAME \n";
 			cout << "Kind warrior, what is your name?\n";
 			cout << UserActions::prompt;
+			
 
 			// Present options
 			getline(cin, input);
+			cout << "\n";
 			game.setupHero(input);
 			cout << "Welcome " << input << "!\nThere is a treasure deep down and you want it!\n";
 			cout << "What size should the dungeons be?\n";
 			cout << UserActions::prompt;
 			getline(cin, input);
+			cout << "\n";
 			game.setRoomSize(atoi(input.c_str()));
 		}
         game.refreshScreen();
@@ -75,7 +79,7 @@ int main(int argc, const char * argv[]) {
             getline(cin, input);
             string output = game.doAction(input);
             game.refreshScreen();
-            cout << "\n" + output + "\n";;
+            cout << "\n" + output;
         }
 
     } catch (...) {

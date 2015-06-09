@@ -14,12 +14,12 @@
 Hero::Hero(string name) : Character(name){
     mName = name;
 	mLevel = 1;
-    mHealthPoints = 100;
+    mHealthPoints = 150;
 	mCurrentHealth = mHealthPoints;
     mAttackPoints = 10;
     mDefencePoints = 10;
 	mPerception = 1;
-	mLevelingSpeed = 15;
+	mLevelingSpeed = 150;
 	mExperiencePoints = 0;
     mCurrentDungeon = 0;
 	setRequiredXp();
@@ -42,9 +42,7 @@ void Hero::printStats(){
 	cout << ("Perception: " + to_string(mPerception) + "\n");
 }
 
-int Hero::perception(){
-    return mPerception;
-}
+
 
 void Hero::levelUp(){
 	mHealthPoints += (15 * mLevel), mAttackPoints++, mDefencePoints++, mLevel++, mPerception++;
@@ -270,4 +268,8 @@ string Hero::search(){
 	else{
 		return "All that's left in this room is a speck of dust";
 	}
+}
+
+int Hero::getDungeonLevel(){
+	return mCurrentDungeon;
 }

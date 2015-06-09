@@ -14,15 +14,16 @@
 class Character{
 protected:
     string mName;
-    int mHealthPoints, mAttackPoints, mDefencePoints, mCurrentHealth, mLevel;
+    int mHealthPoints, mAttackPoints, mDefencePoints, mCurrentHealth, mLevel, mPerception;
 public:
     Character(string name);
-    virtual void attack(shared_ptr<Character> otherCharacter);
+    virtual string attack(shared_ptr<Character> otherCharacter);
     bool couldDefend(shared_ptr<Character> otherCharacter);
     string getName();
     int getHP();
     void addHP(int hpToAdd);
     void lowerHP(int hpToLower);
+	int getPerception();
 };
 
 #endif /* defined(__Dungeon_crawler__Character__) */

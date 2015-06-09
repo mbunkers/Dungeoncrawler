@@ -33,9 +33,9 @@ private:
     
     
 public:
-    Dungeon(int size);
+    Dungeon(int size, int level);
     shared_ptr<Room> getStartRoom();
-    void generateDungeon(int size);
+    void generateDungeon(int size, int level);
     void print(shared_ptr<Hero> player);
 };
 

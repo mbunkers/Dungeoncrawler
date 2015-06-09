@@ -21,8 +21,8 @@ class Factory{
 public:
     static shared_ptr<Factory> Instance();
     Factory();
-    shared_ptr<Room> generateRoom();
-    shared_ptr<Enemy> generateEnemy();
+    shared_ptr<Room> generateRoom(int dungeonLevel);
+	shared_ptr<Enemy> generateEnemy(int dungeonLevel, bool isBoss);
     shared_ptr<Item> generateItem();
     shared_ptr<Trap> generateTrap();
 private:
@@ -33,7 +33,7 @@ private:
     void loadTraps();
     void loadDescriptions(int index, string path);
     vector<string> splittedString(const string line, char delim);
-    string generateEnemyDescription();
+	string generateEnemyDescription();
     string generateRoomDescription();
     string generateTrapDescription();
     string stringFromVector(vector<string> data);

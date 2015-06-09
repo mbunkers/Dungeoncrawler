@@ -1,11 +1,11 @@
-leon
-2
+Leon
+3
 1
-94
-115
-11
-11
-2
-15
-2
-weapon,Sniper,It should be super effective,50
+128
+195
+12
+12
+3
+60
+3
+potion,Magic potion from Panoramix,It should be dangerous,10

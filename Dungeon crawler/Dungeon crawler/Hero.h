@@ -10,13 +10,14 @@
 #define __Dungeon_crawler__Hero__
 
 #include "stdafx.h"
+#include "Item.h"
 #include "Room.h"
 #include "Character.h"
-#include "Item.h"
+
 
 class Hero : public Character{
 private:
-	int mExperiencePoints, mPerception, mLevelingSpeed, mRequiredXp, mCurrentDungeon;
+	int mExperiencePoints, mLevelingSpeed, mRequiredXp, mCurrentDungeon;
 	vector<shared_ptr<Item>> mItems;
 	void levelUp();
 	void setRequiredXp();
@@ -24,6 +25,7 @@ private:
 
 public:
     Hero(string name);
+	int getDungeonLevel();
     vector<shared_ptr<Room>> mRoomHistory = vector<shared_ptr<Room>>();
 	void addXp(int xp);
 	bool rest();
@@ -38,7 +40,6 @@ public:
     int countOfItems();
     shared_ptr<Item> getItem(int index);
 	string search();
-    int perception();
 };
 
 #endif /* defined(__Dungeon_crawler__Hero__) */

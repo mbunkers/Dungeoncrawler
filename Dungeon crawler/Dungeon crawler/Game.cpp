@@ -18,7 +18,7 @@ Game::Game(){
 }
 
 void Game::setup(){
-    mDungeon = make_shared<Dungeon>(mRoomSize);
+    mDungeon = make_shared<Dungeon>(mRoomSize, mHero->getDungeonLevel());
     mHero->mRoomHistory.push_back(mDungeon->getStartRoom());
     mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->setVisited(mHero);
 }
@@ -65,14 +65,25 @@ string Game::actionsForRoom(){
 }
 
 string Game::doAction(string action){
+	string output = "";
     switch (mGameState) {
         case MAIN:
             actionInMain(action);
             return "";
         case ATTACK:
-            return actionInAttack(action) + "\n";
+			output = actionInAttack(action) + "\n";
+			if (mHero->getHP() < 1){
+				mGameState = GameStates::MAIN;
+				return output + "	Struck down by the terrors of the dungeon.\n	You lie bleeding on the ground with your body losing all color except from the blood on your skin.\n	The last thing you feel is the knawing of rats on your almost lifeless body.\n	This is the end... \n\n FIN \n\n";
+			}
+            return output;
         case ROOM:
-            return canDoActionInRoom(action) + "\n";
+			output = canDoActionInRoom(action) + "\n";
+			if (mHero->getHP() < 1){
+				mGameState = GameStates::MAIN;
+				return output + "	Struck down by the terrors of the dungeon.\n	You lie bleeding on the ground with your body losing all color except from the blood on your skin.\n	The last thing you feel is the knawing of rats on your almost lifeless body.\n	This is the end... \n\n FIN \n\n";
+			}
+			return output;
         default:
             return "\n";
     }
@@ -80,7 +91,7 @@ string Game::doAction(string action){
 
 // Find suitable action when in main
 void Game::actionInMain(string action){
-    //unused
+	exit(0);
 }
 
 // Find suitable action when in attack
@@ -113,20 +124,26 @@ string Game::actionInAttack(string action){
                 if (index < mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mEnemies.size()){
                     shared_ptr<Room> room = mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1);
                     shared_ptr<Enemy> enemy = room->mEnemies.at(index);
-                    if (!enemy->couldDefend(mHero)){
-                        mHero->attack(enemy);                        
-                    }
+
+					//try to attack enemy
+					string attackMessage;                    
+                    attackMessage = mHero->attack(enemy); 
+
                     if (enemy->getHP() < 1){
-						mHero->addXp(10);
+						mHero->addXp(enemy->getXp());
+						if (enemy->isBoss()){							
+								mGameState = GameStates::MAIN;
+								return "	With a mighty swing you strike down your final opponent.\n	It was a long journey into depths of almost hell itself!\n	But you succeeded where others did not!\n	Covered in blood, dust and the entrails of foes slain.\n	You walk the final hall towards your prize to secumb to it's glory.\n	This is, the end. \n\n FIN";	
+						}
                         room->mEnemies.erase(room->mEnemies.begin() + index);
                         if (room->mEnemies.size() == 0){
                             mGameState = GameStates::ROOM;
-                            return "You've defeaten all enemies here!";
+							return attackMessage + "You've defeaten all enemies here!";
                         }
-                        return "You've defeaten this enemy!";
-                    }
-                    
-                    enemiesAttackPlayer(room);
+						return attackMessage + "You've defeaten this enemy!" + enemiesAttackPlayer(room);
+					}	
+					
+					return attackMessage + enemiesAttackPlayer(room);
                 }
             }
             else {
@@ -161,12 +178,7 @@ string Game::actionInAttack(string action){
             }
         }
     }
-    
-    if (mHero->getHP() < 1){
-        mGameState = GameStates::MAIN;
-        return "You've been defeaten!\n";
-    }
-    
+       
     shared_ptr<Room> room = mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1);
     if (room->mEnemies.size() == 0){
         mGameState = GameStates::ROOM;
@@ -176,13 +188,13 @@ string Game::actionInAttack(string action){
     return "";
 }
 
-void Game::enemiesAttackPlayer(shared_ptr<Room> room){
+string Game::enemiesAttackPlayer(shared_ptr<Room> room){
+	string log = "";
     for (size_t i = 0; i < room->mEnemies.size(); i++){
-        shared_ptr<Enemy> enemy = room->mEnemies.at(i);
-        if (!mHero->couldDefend(enemy)){
-            enemy->Character::attack(mHero);
-        }
+        shared_ptr<Enemy> enemy = room->mEnemies.at(i);        
+        log.append(enemy->Character::attack(mHero));        
     }
+	return log;
 }
 
 // Find suitable action when in a room
@@ -218,32 +230,32 @@ string Game::canDoActionInRoom(string action){
 				if (action == "West"){
 					if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mWest != nullptr){
 						mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mWest);
-						mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mWest->setVisited(mHero);
-						return "";
+						string log = mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mWest->setVisited(mHero);
+						return log;
 					}
 				}
 				else {
 					if (action == "North"){
 						if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mNorth != nullptr){
 							mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mNorth);
-							mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mNorth->setVisited(mHero);
-							return "";
+							string log = mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mNorth->setVisited(mHero);
+							return log;
 						}
 					}
 					else {
 						if (action == "East"){
 							if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mEast != nullptr){
 								mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mEast);
-								mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mEast->setVisited(mHero);
-								return "";
+								string log = mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mEast->setVisited(mHero);
+								return log;
 							}
 						}
 						else {
 							if (action == "South"){
 								if (mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mSouth != nullptr){
 									mHero->mRoomHistory.push_back(mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->mSouth);
-									mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mSouth->setVisited(mHero);
-									return "";
+									string log = mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 2)->mSouth->setVisited(mHero);
+									return log;
 								}
 							}
 							else {
@@ -252,9 +264,13 @@ string Game::canDoActionInRoom(string action){
 										if (mHero->toPreviousDungeon()){
 											setup();
 											saveGame();
+											return "You move back up";
 										}
-										return "";
+										else{
+											return "Trying to run before you get any treasure ey? Cowards should just rot in the dungeon.";
+										}										
 									}
+									return "";
 								}
 								else {
 									if (action == "Down"){
@@ -263,7 +279,7 @@ string Game::canDoActionInRoom(string action){
 												setup();
 												saveGame();
 											}
-											return "";
+											return "You went further into the depths";
 										}
 									}
 								}

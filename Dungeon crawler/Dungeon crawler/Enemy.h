@@ -15,11 +15,15 @@
 class Enemy: public Character{
 private:
     bool mIsBoss = false;
+	void setStats(int dungeonLevel);
     
 public:
     Enemy(string name, int level, bool isBoss);
     void attack();
     void defend();
+	int getXp();
+	int getLevel();
+	bool isBoss();
 };
 
 #endif /* defined(__Dungeon_crawler__Enemy__) */

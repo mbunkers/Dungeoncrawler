@@ -22,12 +22,12 @@ shared_ptr<Factory> Factory::Instance(){
     return instance;
 }
 
-shared_ptr<Room> Factory::generateRoom(){
-    return make_shared<Room>(generateRoomDescription());
+shared_ptr<Room> Factory::generateRoom(int dungeonLevel){
+	return make_shared<Room>(generateRoomDescription(), dungeonLevel);
 }
 
-shared_ptr<Enemy> Factory::generateEnemy(){
-    return make_shared<Enemy>(generateEnemyDescription(), 1, false);
+shared_ptr<Enemy> Factory::generateEnemy(int dungeonLevel, bool isBoss){
+	return make_shared<Enemy>(generateEnemyDescription(), dungeonLevel, isBoss);
 }
 
 shared_ptr<Item> Factory::generateItem(){
