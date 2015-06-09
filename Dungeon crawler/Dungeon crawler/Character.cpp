@@ -19,7 +19,7 @@ string Character::attack(shared_ptr<Character> otherCharacter){
 		return mName + ": Attacked " + otherCharacter->getName() + " Doing " + to_string(dmg) + " damage\n";
 	}
 	else{
-		return otherCharacter->mName + ": blocked the attack";
+		return otherCharacter->mName + ": blocked the attack\n";
 	}
 }
 
