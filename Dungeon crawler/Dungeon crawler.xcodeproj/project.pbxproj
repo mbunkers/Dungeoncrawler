@@ -220,6 +220,7 @@
 				TargetAttributes = {
 					0CE03EE61A9A1F15007BBAD5 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = UBC6CT9KK3;
 					};
 				};
 			};
@@ -342,16 +343,22 @@
 		0CE03EEF1A9A1F15007BBAD5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				GCC_PREFIX_HEADER = "Dungeon crawler/PrefixHeader.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		0CE03EF01A9A1F15007BBAD5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				GCC_PREFIX_HEADER = "Dungeon crawler/PrefixHeader.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

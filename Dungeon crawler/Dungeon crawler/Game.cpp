@@ -60,6 +60,7 @@ string Game::actionsForAttack(){
 }
 
 string Game::actionsForRoom(){
+    cout << mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->description() + "\n";
     mHero->mRoomHistory.at(mHero->mRoomHistory.size() - 1)->printPossibleMovements();
     return "";
 }
